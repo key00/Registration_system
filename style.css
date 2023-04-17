@@ -17,31 +17,32 @@
 /* index pages styles end */
 
 /* login page styles start */
-
-.main-wrap {
-  height: 100vh;
-  margin: 0 !important;
-  text-align: center;
+.login-body {
   background-image: url("./images/bg1_2.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
+.main-wrap {
+  text-align: center;
+}
+
 .login {
-  margin: 0 auto;
   padding: 20px;
   width: 40%;
+  margin: 0 auto;
   background-color: #fff;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+  margin-top: 10%;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  margin: 15px auto;
-  padding: 20px;
+  margin: 0.9375rem auto;
+  padding: 1.25rem;
   width: 50%;
   align-items: center;
 }
@@ -53,16 +54,16 @@
 .btn-primary {
   background-color: rgb(2, 134, 193);
   border: rgb(2, 134, 193) solid;
-  padding: 10px;
+  padding: 0.625rem;
   border-radius: 8px;
-  width: 100px;
+  width: 6.25rem;
   color: white;
 }
 
 .login-form input {
   background-color: rgb(232, 240, 254);
-  height: 40px;
-  padding: 10px;
+  height: 2.5rem;
+  padding: 0.625rem;
   border-style: none;
 }
 
