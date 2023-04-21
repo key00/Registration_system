@@ -10,12 +10,17 @@
   grid-template-columns: 1fr 4fr;
 }
 
-.aside {
-  background-color: antiquewhite;
+.main {
+  background-color: rgb(201, 201, 201);
 }
 
-.main {
-  background-color: aquamarine;
+.profile {
+  padding: 15px;
+}
+
+.user-img {
+  border-radius: 50%;
+  width: 100%;
 }
 /* index pages styles end */
 
