@@ -5,6 +5,14 @@
 .header {
   background-color: #019eb1;
 }
+
+a.user.nav-link {
+  color: #fff;
+}
+/* ul.left {
+  margin-left: 60rem;
+} */
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 4fr;

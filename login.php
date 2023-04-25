@@ -47,3 +47,22 @@
     </div>
   </body>
 </html>
+
+<?php
+include("../includes/conn.php");
+$username = $_GET['user'];
+$password = $_GET['pass'];
+
+// Connect to database
+
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Check if username and password match a user in the database
+$sql = "SELECT * FROM patients WHERE user='$username' AND pass='$password'";
+$result = mysqli_query($conn, $sql);
+
+?>
