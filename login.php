@@ -1,68 +1,56 @@
+<?php require("./includes/db.php") ?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration System</title>
-    <link rel="icon" href="images/UoK_logo.jpg" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="login-body">
-    <div class="main-wrap">
-      <div class="login">
-        <h3 class="mt-2 pt-3">University of Kyrenia</h3>
-        <img src="images/UoK_logo.jpg" alt="Logo" width="100" height="100" />
 
-        <h5 class="pt-2 sec-title">Student Portal</h5>
-        <form action="" class="login-form">
-          <input
-            type="text"
-            name="stdNum"
-            placeholder="Student Number"
-            required
-          />
-          <input
-            type="password"
-            name="stdPass"
-            placeholder="Password"
-            required
-          />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration System</title>
+  <link rel="icon" href="images/UoK_logo.jpg" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+</head>
 
-          <button class="btn-primary" type="submit" name="login">Login</button>
-        </form>
-      </div>
+<body class="login-body">
+  <div class="main-wrap">
+    <div class="login">
+      <h3 class="mt-2 pt-3">University of Kyrenia</h3>
+      <img src="images/UoK_logo.jpg" alt="Logo" width="100" height="100" />
+
+      <h5 class="pt-2 sec-title">Student Portal</h5>
+      <form action="login.php" method="POST" class="login-form">
+        <input type="text" name="stdNum" placeholder="Student Number" required />
+        <input type="password" name="stdPass" placeholder="Password" required />
+
+        <button class="btn-primary" type="submit" name="login">Login</button>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <?php
-include("../includes/conn.php");
-$username = $_GET['user'];
-$password = $_GET['pass'];
-
-// Connect to database
+if (isset($_POST['login'])) {
+  $username = $_POST['stdNum'];
+  $password = $_POST['stdPass'];
 
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+  $sql = "SELECT * FROM students WHERE username='$username' AND stdpass='$password'";
+  $result = mysqli_query($con, $sql);
+  $check_user = mysqli_num_rows($result);
+  if ($check_user == 0) {
+    echo "<h5 class='text-center'> username or password is wrong! </h5>";
+  } else {
+    session_start();
+    $_SESSION['username'] = $username;
+    echo "<script>alert('Login successful')</script>";
+    echo "<script>window.open('index.php','_self')</script>";
+  }
 }
-
-// Check if username and password match a user in the database
-$sql = "SELECT * FROM patients WHERE user='$username' AND pass='$password'";
-$result = mysqli_query($conn, $sql);
-
 ?>
