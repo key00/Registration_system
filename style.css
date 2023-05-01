@@ -30,6 +30,10 @@ a.user.nav-link {
   border-radius: 50%;
   width: 100%;
 }
+
+.sidebar-hide {
+  display: none;
+}
 /* index pages styles end */
 
 /* login page styles start */

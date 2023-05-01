@@ -23,15 +23,15 @@ require("./includes/db.php")
   <header class="header">
     <nav class="navbar navbar-expand-lg">
       <div class="navbar-brand">
-        <a href=""></a><img src="images/second_logo.png" alt="" width="250" height="50" /></a>
+        <a href=""><img src="images/second_logo.png" alt="" width="250" height="50" /></a>
       </div>
       <div class="collapse navbar-collapse">
-        <ul class="navbar-nav"><i class="fa-solid fa-bars" style="color: #d1e2ff;"></i></ul>
+        <ul class="navbar-nav"><i class="fa-solid fa-bars" id="aside" style="color: #d1e2ff;"></i></ul>
         <ul class="navbar-nav left">
           <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Keyna Laure INAMUGISHA</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
-              <li><a class="dropdown-item" href="#"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
+              <li><a class="dropdown-item" href="logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
               <!-- <li><hr class="dropdown-divider"></li> -->
             </ul>
           </li>
@@ -64,7 +64,23 @@ require("./includes/db.php")
         <p><i class="fa-solid fa-user-group pe-3"> </i> ESER GEMIKONAKLI</p>
       </div>
     </div>
-    <div class="main">hello</div>
+    <div class="main">
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+    </div>
   </div>
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
