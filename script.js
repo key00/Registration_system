@@ -1,10 +1,8 @@
-// sidebar = document.getElementById(aside);
-(function ($) {
-  "use strict";
-
-  $("#aside").click(function () {
-    if (!$(this).hasClass("sidebar-hide")) {
-      $(this).addClass("sidebar-hide");
-    } else $(this).removeClass("sidebar-hide");
-  });
-});
+sidebarbtn = document.querySelector(".sidebarBtn");
+sidebar = document.querySelector(".aside");
+console.log("qs working");
+sidebarbtn.onclick = function () {
+  if (sidebar.classList.contains("sidebar-hide")) {
+    sidebar.classList.remove("sidebar-hide");
+  } else sidebar.classList.add("sidebar-hide");
+};
