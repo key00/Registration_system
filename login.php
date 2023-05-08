@@ -18,19 +18,27 @@
 
 <body class="login-body">
   <div class="main-wrap">
-    <div class="login">
-      <h3 class="mt-2 pt-3">University of Kyrenia</h3>
-      <img src="images/UoK_logo.jpg" alt="Logo" width="100" height="100" />
 
-      <h5 class="pt-2 sec-title">Student Portal</h5>
-      <form action="login.php" method="POST" class="login-form">
-        <input type="text" name="stdNum" placeholder="Student Number" required />
-        <input type="password" name="stdPass" placeholder="Password" required />
+    <div class="login row">
+      <div class="col-md-6 login-left">
 
-        <button class="btn-primary" type="submit" name="login">Login</button>
-      </form>
+        <img src="images/UoK_logo.jpg" alt="Logo" width="200" height="200" />
+      </div>
+      <div class="col-md-6 login-right">
+        <h3 class="mt-2 pt-3">University of Kyrenia</h3>
+        <h5 class="pt-2 sec-title">Student Portal</h5>
+        <form action="login.php" method="POST" class="login-form">
+          <input type="text" name="stdNum" placeholder="Student Number" required />
+          <input type="password" name="stdPass" placeholder="Password" required />
+
+          <button class="btn-primary" type="submit" name="login">Login</button>
+        </form>
+      </div>
     </div>
+
   </div>
+
+
 </body>
 
 </html>
@@ -41,7 +49,7 @@ if (isset($_POST['login'])) {
   $password = $_POST['stdPass'];
 
 
-  $sql = "SELECT * FROM students WHERE username='$username' AND stdpass='$password'";
+  $sql = "SELECT * FROM students WHERE studentId='$username' AND stdpass='$password'";
   $result = mysqli_query($con, $sql);
   $check_user = mysqli_num_rows($result);
   if ($check_user == 0) {
