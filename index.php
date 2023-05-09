@@ -17,6 +17,8 @@ require("./includes/db.php")
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
@@ -55,17 +57,18 @@ require("./includes/db.php")
 
         <div class="sidenav">
           <ul>
-            <li class="active"><a href=""><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</a></li>
-            <li><a href=""><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</a></li>
-            <li><a href=""><i class="fa-solid fa-scroll pe-3"></i>Transcript</a></li>
-            <li><a href=""><i class="fa-brands fa-discourse pe-3"></i>Courses</a></li>
+            <li class="pinfo content active"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</li>
+            <li class="curr_sem content"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</li>
+            <li class="trans content"><i class="fa-solid fa-scroll pe-3"></i>Transcript</li>
+            <!-- <li class="course content"><i class="fa-brands fa-discourse pe-3"></i>Courses</li> -->
+            <li class="transfer content"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</li>
           </ul>
         </div>
       </div>
     </div>
     <div class="main">
 
-      <div class="container mt-3">
+      <div class="p_info dashboard active container mt-3">
         <div class="card">
           <div class="card-body p-4">
             <div class="row info">
@@ -100,12 +103,64 @@ require("./includes/db.php")
           </div>
         </div>
       </div>
-      <div class="container">
+
+      <div class="current dashboard container">
+
+        <table class="table table-hover bg-light table-borderless mt-3">
+
+          <thead>
+            <tr class="table-success">
+              <th class="text-center table-header" colspan="4">Spring 2022-2023</th>
+            </tr>
+
+          </thead>
+          <tbody class="table-group-divider">
+            <tr class="table-secondary">
+              <th scope="col">Code</th>
+              <th scope="col">course Name</th>
+              <th scope="col">Credits</th>
+              <th scope="col">Grade</th>
+            </tr>
+            <tr>
+              <td scope="row">MTH101</td>
+              <td>Analysis</td>
+              <td>4</td>
+              <td>AA</td>
+            </tr>
+            <tr>
+              <td scope="row">MTH101</td>
+              <td>Analysis</td>
+              <td>4</td>
+              <td>AA</td>
+            </tr>
+            <tr>
+              <td scope="row">MTH101</td>
+              <td>Analysis</td>
+              <td>4</td>
+              <td>AA</td>
+            </tr>
+            <tr>
+              <td scope="row">MTH101</td>
+              <td>Analysis</td>
+              <td>4</td>
+              <td>AA</td>
+            </tr>
+            <tr>
+              <td scope="row">MTH101</td>
+              <td>Analysis</td>
+              <td>4</td>
+              <td>AA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="std_transc dashboard container">
         <table class="table table-hover bg-light table-borderless mt-3">
 
           <thead class="table-success">
             <tr>
-              <th class="text-center" colspan="4">Fall 2019-2020</th>
+              <th class="text-center table-header " colspan="4">Fall 2019-2020</th>
             </tr>
 
           </thead>
@@ -148,14 +203,13 @@ require("./includes/db.php")
             </tr>
           </tbody>
         </table>
-      </div>
 
-      <div class="container-fluid">
+
         <table class="table table-hover bg-light table-borderless mt-3">
 
           <thead>
             <tr class="table-success">
-              <th class="text-center" colspan="4">Spring 2019-2020</th>
+              <th class="text-center table-header" colspan="4">Spring 2019-2020</th>
             </tr>
 
           </thead>
@@ -198,13 +252,12 @@ require("./includes/db.php")
             </tr>
           </tbody>
         </table>
-      </div>
-      <div class="container-fluid">
+
         <table class="table table-hover bg-light table-borderless mt-3">
 
           <thead>
             <tr class="table-success">
-              <th class="text-center" colspan="4">Fall 2020-2021</th>
+              <th class="text-center table-header" colspan="4">Fall 2020-2021</th>
             </tr>
 
           </thead>
@@ -247,7 +300,63 @@ require("./includes/db.php")
             </tr>
           </tbody>
         </table>
+
       </div>
+
+      <div class="transfer dashboard container">
+        <div class="card mt-3">
+          <div class="card-body">
+            <table class="table table-hover bg-light table-borderless mt-3">
+
+              <thead class="table-success">
+                <tr>
+                  <th class="text-center table-header " colspan="4">Fall 2019-2020</th>
+                </tr>
+
+              </thead>
+              <tbody class="table-group-divider">
+                <tr class="table-secondary">
+                  <th scope="col">Code</th>
+                  <th scope="col">course Name</th>
+                  <th scope="col">Credits</th>
+                  <th scope="col">Grade</th>
+                </tr>
+                <tr>
+                  <td scope="row">MTH101</td>
+                  <td>Analysis</td>
+                  <td>4</td>
+                  <td>AA</td>
+                </tr>
+                <tr>
+                  <td scope="row">MTH101</td>
+                  <td>Analysis</td>
+                  <td>4</td>
+                  <td>AA</td>
+                </tr>
+                <tr>
+                  <td scope="row">MTH101</td>
+                  <td>Analysis</td>
+                  <td>4</td>
+                  <td>AA</td>
+                </tr>
+                <tr>
+                  <td scope="row">MTH101</td>
+                  <td>Analysis</td>
+                  <td>4</td>
+                  <td>AA</td>
+                </tr>
+                <tr>
+                  <td scope="row">MTH101</td>
+                  <td>Analysis</td>
+                  <td>4</td>
+                  <td>AA</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <script src="./script.js"></script>
