@@ -87,6 +87,9 @@ table thead {
   display: block;
 }
 
+.full_name {
+  text-transform: uppercase;
+}
 /* index pages styles end */
 
 /* login page styles start */

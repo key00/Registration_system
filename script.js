@@ -21,7 +21,7 @@
         $(this).addClass("active");
         if ($(this).hasClass("active")) {
           if ($(this).hasClass("pinfo")) {
-            $(".p_info.dahboard").addClass("active");
+            $(".p_info.dashboard").addClass("active");
           }
 
           if ($(this).hasClass("trans")) {

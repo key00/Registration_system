@@ -1,5 +1,31 @@
 <?php
-require("./includes/db.php")
+
+session_start();
+require("./includes/db.php");
+global $con;
+if (isset($_SESSION['username'])) {
+
+  $std_num = $_SESSION['username'];
+  $get_student = "select * from students where studentId=$std_num";
+  $run_student = mysqli_query($con, $get_student);
+  $row_student = mysqli_fetch_array($run_student);
+  $fname = $row_student['firstName'];
+  $lname = $row_student['lastName'];
+  $dob = $row_student['date_birth'];
+  $gender = $row_student['gender'];
+  $stdmail = $row_student['stdEmail'];
+  $country = $row_student['country'];
+  $pass_num = $row_student['passportNum'];
+  $scholarship = $row_student['scholarship'];
+  $advisor = $row_student['advisor'];
+  $department = $row_student['dId'];
+
+  $get_dep = "select * from departments where dId=$department";
+  $run_dep = mysqli_query($con, $get_dep);
+  $row_dep = mysqli_fetch_array($run_dep);
+  $dep_name = $row_dep['departmentName'];
+} else echo "<script> window.open('login.php','_self')</script>";
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +56,7 @@ require("./includes/db.php")
       <div class="collapse navbar-collapse px-4">
         <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
         <ul class="navbar-nav">
-          <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> K20190684 </a>
+          <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?php echo $std_num ?> </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
               <li><a class="dropdown-item" href="logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
@@ -50,9 +76,9 @@ require("./includes/db.php")
         </div>
         <hr />
 
-        <p class="text-center"><strong>KEYNA LAURE INAMUGISHA</strong></p>
+        <p class="text-center full_name"><strong><?php echo $fname; ?> <?php echo $lname; ?></strong></p>
         <hr />
-        <p class="text-center"><strong>K20190684</strong></p>
+        <p class="text-center"><strong><?php echo $std_num; ?></strong></p>
         <hr />
 
         <div class="sidenav">
@@ -73,17 +99,17 @@ require("./includes/db.php")
           <div class="card-body p-4">
             <div class="row info">
               <div class="col-5 col-md-5">
-                <p>Name: Keyna Laure</p>
-                <p>Surname: Inamugisha</p>
-                <p>Date of birth: 19/04/2000</p>
-                <p>Gender: Female</p>
-                <p>Email: kinamugisha@gmail.com</p>
+                <p>Name: <?php echo $fname ?></p>
+                <p>Surname: <?php echo $lname ?></p>
+                <p>Date of birth: <?php echo $dob ?></p>
+                <p>Gender: <?php echo $gender ?></p>
+                <p>Email: <?php echo $stdmail ?></p>
 
 
               </div>
               <div class="col-5 col-md-5">
-                <p>Country of Origin: Burundi</p>
-                <p>Passport Number: OP0215452</p>
+                <p>Country of Origin: <?php echo $country ?></p>
+                <p>Passport Number: <?php echo $pass_num ?></p>
                 <p> Father's name: Niyungeko Deo </p>
                 <p> Mother's name: Nsabimana Laetitia</p>
                 <p>Tel: 05338857918</p>
@@ -96,10 +122,10 @@ require("./includes/db.php")
         <div class="card mt-3">
           <div class="card-body p-4">
             <p><i class="fa-solid fa-building-columns pe-3"></i>Faculty: Engineering</p>
-            <p><i class="fa-solid fa-building pe-3"></i>Department: Computer Engineering</p>
+            <p><i class="fa-solid fa-building pe-3"></i>Department: <?php echo $dep_name ?></p>
             <p><i class="fa-solid fa-inbox pe-3"></i>Status: Active Student</p>
-            <p><i class="fa-solid fa-graduation-cap pe-3"></i>Scholarship: 100%</p>
-            <p><i class="fa-solid fa-user-group pe-3"> </i>Advisor: ESER GEMIKONAKLI</p>
+            <p><i class="fa-solid fa-graduation-cap pe-3"></i>Scholarship: <?php echo $scholarship ?>%</p>
+            <p class="full_name"><i class="fa-solid fa-user-group pe-3"> </i>Advisor: <?php echo $advisor ?></p>
           </div>
         </div>
       </div>
