@@ -2,6 +2,7 @@
 
 session_start();
 require("./includes/db.php");
+require("./functions/functions.php");
 global $con;
 if (isset($_SESSION['username'])) {
 
@@ -86,7 +87,7 @@ if (isset($_SESSION['username'])) {
             <li class="pinfo content active"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</li>
             <li class="curr_sem content"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</li>
             <li class="trans content"><i class="fa-solid fa-scroll pe-3"></i>Transcript</li>
-            <!-- <li class="course content"><i class="fa-brands fa-discourse pe-3"></i>Courses</li> -->
+            <li class="course content"><i class="fa-brands fa-discourse pe-3"></i>Courses</li>
             <li class="transfer content"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</li>
           </ul>
         </div>
@@ -136,52 +137,50 @@ if (isset($_SESSION['username'])) {
 
           <thead>
             <tr class="table-success">
-              <th class="text-center table-header" colspan="4">Spring 2022-2023</th>
+              <th class="text-center table-header" colspan="8">Spring 2022-2023</th>
             </tr>
 
           </thead>
           <tbody class="table-group-divider">
             <tr class="table-secondary">
+              <th scope="col">Cat</th>
               <th scope="col">Code</th>
-              <th scope="col">course Name</th>
+              <th scope="col">Name(EN)</th>
+              <th scope="col">Name(TR)</th>
               <th scope="col">Credits</th>
+              <th scope="col">ECTS</th>
+              <th scope="col">Lecturer</th>
               <th scope="col">Grade</th>
             </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
+            <?php getSemester() ?>
+
           </tbody>
         </table>
       </div>
 
       <div class="std_transc dashboard container">
+        <table class="table table-hover bg-light table-borderless mt-3">
+
+          <tbody class="table-group-divider">
+            <tr class="table-secondary">
+              <th scope="col">Year</th>
+              <th scope="col">Period</th>
+              <th scope="col">Code</th>
+              <th scope="col">course Name(EN)</th>
+              <th scope="col">course Name(TR)</th>
+              <th scope="col">Credits</th>
+              <th scope="col">Grade</th>
+            </tr>
+
+            <?php getGrades() ?>
+
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="transfer dashboard container">
+
         <table class="table table-hover bg-light table-borderless mt-3">
 
           <thead class="table-success">
@@ -230,163 +229,37 @@ if (isset($_SESSION['username'])) {
           </tbody>
         </table>
 
-
-        <table class="table table-hover bg-light table-borderless mt-3">
-
-          <thead>
-            <tr class="table-success">
-              <th class="text-center table-header" colspan="4">Spring 2019-2020</th>
-            </tr>
-
-          </thead>
-          <tbody class="table-group-divider">
-            <tr class="table-secondary">
-              <th scope="col">Code</th>
-              <th scope="col">course Name</th>
-              <th scope="col">Credits</th>
-              <th scope="col">Grade</th>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table class="table table-hover bg-light table-borderless mt-3">
-
-          <thead>
-            <tr class="table-success">
-              <th class="text-center table-header" colspan="4">Fall 2020-2021</th>
-            </tr>
-
-          </thead>
-          <tbody class="table-group-divider">
-            <tr class="table-secondary">
-              <th scope="col">Code</th>
-              <th scope="col">course Name</th>
-              <th scope="col">Credits</th>
-              <th scope="col">Grade</th>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-            <tr>
-              <td scope="row">MTH101</td>
-              <td>Analysis</td>
-              <td>4</td>
-              <td>AA</td>
-            </tr>
-          </tbody>
-        </table>
-
       </div>
 
-      <div class="transfer dashboard container">
-        <div class="card mt-3">
-          <div class="card-body">
-            <table class="table table-hover bg-light table-borderless mt-3">
+      <div class="courses dashboard container">
+        <table class="table table-hover bg-light table-borderless mt-3">
 
-              <thead class="table-success">
-                <tr>
-                  <th class="text-center table-header " colspan="4">Fall 2019-2020</th>
-                </tr>
+          <thead>
+            <tr class="table-success">
+              <th class="text-center table-header" colspan="7">Fall semester</th>
+            </tr>
 
-              </thead>
-              <tbody class="table-group-divider">
-                <tr class="table-secondary">
-                  <th scope="col">Code</th>
-                  <th scope="col">course Name</th>
-                  <th scope="col">Credits</th>
-                  <th scope="col">Grade</th>
-                </tr>
-                <tr>
-                  <td scope="row">MTH101</td>
-                  <td>Analysis</td>
-                  <td>4</td>
-                  <td>AA</td>
-                </tr>
-                <tr>
-                  <td scope="row">MTH101</td>
-                  <td>Analysis</td>
-                  <td>4</td>
-                  <td>AA</td>
-                </tr>
-                <tr>
-                  <td scope="row">MTH101</td>
-                  <td>Analysis</td>
-                  <td>4</td>
-                  <td>AA</td>
-                </tr>
-                <tr>
-                  <td scope="row">MTH101</td>
-                  <td>Analysis</td>
-                  <td>4</td>
-                  <td>AA</td>
-                </tr>
-                <tr>
-                  <td scope="row">MTH101</td>
-                  <td>Analysis</td>
-                  <td>4</td>
-                  <td>AA</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr class="table-secondary">
+              <th scope="col">Cat</th>
+              <th scope="col">Code</th>
+              <th scope="col">Name(EN)</th>
+              <th scope="col">Name(TR)</th>
+              <th scope="col">Credits</th>
+              <th scope="col">ECTS</th>
+              <th scope="col">Pre-requisite</th>
+            </tr>
+            <?php getCourses() ?>
+
+          </tbody>
+        </table>
       </div>
 
     </div>
   </div>
-  <script src="./script.js"></script>
 
+  <script src="./script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 
