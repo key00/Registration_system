@@ -79,10 +79,9 @@ function getGrades()
     while ($row_grades = mysqli_fetch_array($run_grades)) {
         $course = $row_grades['course_code'];
         $year = $row_grades['year'];
-        $tr_name = $row_grades['courseName_tr'];
         $semester = $row_grades['semester'];
         $grade = $row_grades['grade'];
-        $get_course = "select * from courses where course_code=$course";
+        $get_course = "select * from courses where course_code='$course'";
         $run_course = mysqli_query($db, $get_course);
         $row_course = mysqli_fetch_array($run_course);
         $en_name = $row_course['courseName_en'];
