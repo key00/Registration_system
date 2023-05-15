@@ -16,6 +16,11 @@
 a.user.nav-link {
   color: #fff;
 }
+
+.navbar-nav.user:hover {
+  background-color: rgba(255, 249, 241, 0.253);
+  border-radius: 8px;
+}
 /* ul.left {
   margin-left: 60rem;
 } */
@@ -75,6 +80,9 @@ table thead {
   border-radius: 10px;
 }
 
+tr {
+  min-height: 70px;
+}
 .table-header {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;

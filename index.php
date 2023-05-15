@@ -56,7 +56,7 @@ if (isset($_SESSION['username'])) {
       </div>
       <div class="collapse navbar-collapse px-4">
         <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav user">
           <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?php echo $std_num ?> </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
@@ -133,28 +133,10 @@ if (isset($_SESSION['username'])) {
 
       <div class="current dashboard container">
 
-        <table class="table table-hover bg-light table-borderless mt-3">
 
-          <thead>
-            <tr class="table-success">
-              <th class="text-center table-header" colspan="8">Spring 2022-2023</th>
-            </tr>
+        <?php getSemester() ?>
 
-          </thead>
-          <tbody class="table-group-divider">
-            <tr class="table-secondary">
-              <th scope="col">Cat</th>
-              <th scope="col">Code</th>
-              <th scope="col">Name(EN)</th>
-              <th scope="col">Name(TR)</th>
-              <th scope="col">Credits</th>
-              <th scope="col">ECTS</th>
-              <th scope="col">Lecturer</th>
-              <th scope="col">Grade</th>
-            </tr>
-            <?php getSemester() ?>
 
-          </tbody>
         </table>
       </div>
 
@@ -172,7 +154,8 @@ if (isset($_SESSION['username'])) {
               <th scope="col">Grade</th>
             </tr>
 
-            <?php getGrades() ?>
+            <?php getTransc()
+            ?>
 
           </tbody>
         </table>
@@ -249,7 +232,7 @@ if (isset($_SESSION['username'])) {
 
           <thead>
             <tr class="table-success">
-              <th class="text-center table-header" colspan="7">Fall semester</th>
+              <th class="text-center table-header" colspan="7"><?php echo $dep_name; ?> courses</th>
             </tr>
 
           </thead>
