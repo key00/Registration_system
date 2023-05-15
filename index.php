@@ -141,24 +141,9 @@ if (isset($_SESSION['username'])) {
       </div>
 
       <div class="std_transc dashboard container">
-        <table class="table table-hover bg-light table-borderless mt-3">
 
-          <tbody class="table-group-divider">
-            <tr class="table-secondary">
-              <th scope="col">Year</th>
-              <th scope="col">Period</th>
-              <th scope="col">Code</th>
-              <th scope="col">course Name(EN)</th>
-              <th scope="col">course Name(TR)</th>
-              <th scope="col">Credits</th>
-              <th scope="col">Grade</th>
-            </tr>
-
-            <?php getTransc()
-            ?>
-
-          </tbody>
-        </table>
+        <?php get_all_semesters()
+        ?>
 
       </div>
 
