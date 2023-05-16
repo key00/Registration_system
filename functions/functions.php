@@ -13,7 +13,7 @@ function getCourses()
   $row_dep = mysqli_fetch_array($run_dep);
   $dep = $row_dep['dId'];
 
-  $get_courses = "select * from courses where dId=$dep";
+  $get_courses = "select * from courses where dId=$dep ";
   $run_courses = mysqli_query($db, $get_courses);
 
   while ($row_courses = mysqli_fetch_array($run_courses)) {
@@ -109,6 +109,12 @@ function getSemester()
 
         ";
     }
+  } else {
+    echo "<div class='card mt-4'>
+    <div class='card-body p-4'>
+      <h5 class='text-center'> Not available </h5>
+    </div>
+  </div>";
   }
 }
 
@@ -148,76 +154,6 @@ function getTransc()
   }
 }
 
-function get_1sem()
-{
-
-  global $db;
-  $student = $_SESSION['username'];
-  $get_semester = "select * from semesters where studentId=$student and year='2019-2020' and period='Fall'";
-  $run_semester = mysqli_query($db, $get_semester);
-  $row_semester = mysqli_fetch_array($run_semester);
-  if ($row_semester > 0) {
-    $year = $row_semester['year'];
-    $period = $row_semester['period'];
-    $code = $row_semester['course_code'];
-    $lecturer = $row_semester['lecturer'];
-    $grade = $row_semester['grade'];
-
-    echo "
-    <table class='table table-hover bg-light table-borderless mt-3'>
-    <thead>
-            <tr class='table-success'>
-              <th class='text-center table-header' colspan='8'> $period $year</th>
-            </tr>
-
-          </thead>
-          <tbody class='table-group-divider'>
-            <tr class='table-secondary'>
-              <th scope='col'>Cat</th>
-              <th scope='col'>Code</th>
-              <th scope='col'>Name(EN)</th>
-              <th scope='col'>Name(TR)</th>
-              <th scope='col'>Credits</th>
-              <th scope='col'>ECTS</th>
-              <th scope='col'>Lecturer</th>
-              <th scope='col'>Grade</th>
-            </tr>
-    ";
-
-
-    while ($row_semester = mysqli_fetch_array($run_semester)) {
-
-      $code = $row_semester['course_code'];
-      $lecturer = $row_semester['lecturer'];
-      $grade = $row_semester['grade'];
-      $get_courses = "select * from courses where course_code='$code'";
-      $run_courses = mysqli_query($db, $get_courses);
-      $row_courses = mysqli_fetch_array($run_courses);
-      $category = $row_courses['category'];
-      $name_en = $row_courses['courseName_en'];
-      $name_tr = $row_courses['courseName_tr'];
-      $credits = $row_courses['credits'];
-      $ects = $row_courses['ects'];
-
-
-      echo "
-
-            <tr>
-              <td scope='row'>$category</td>
-              <td scope='row'>$code</td>
-              <td scope='row'>$name_en</td>
-              <td scope='row'>$name_tr</td>
-              <td scope='row'>$credits</td>
-              <td scope='row'>$ects</td>
-              <td scope='row'>$lecturer</td>
-              <td scope='row'>$grade</td>
-            </tr>
-            
-
-        ";
-    }
-  }
-}
 
 function get_all_semesters()
 {
@@ -280,6 +216,113 @@ function get_all_semesters()
       echo "</tbody></table>";
     }
   } else {
-    echo "No semesters found.";
+    echo "<div class='card mt-4'>
+    <div class='card-body p-4'>
+      <h5 class='text-center'> No semesters found </h5>
+    </div>
+  </div>";
   }
+}
+
+function get_courses_left()
+{
+  global $db;
+  $student = $_SESSION['username'];
+  $get_dep = "select * from students where studentId=$student";
+  $run_dep = mysqli_query($db, $get_dep);
+  $row_dep = mysqli_fetch_array($run_dep);
+  $dep = $row_dep['dId'];
+
+  $get_courses = "select * from courses left join semesters on semesters.course_code=courses.course_code where semesters.course_code is null and courses.dId=$dep";
+  $run_courses = mysqli_query($db, $get_courses);
+  if (mysqli_num_rows($run_courses) > 0) {
+    echo "
+    <table class='table table-hover bg-light table-borderless mt-3'>
+    <thead>
+            <tr class='table-success'>
+              <th class='text-center table-header' colspan='7'> Courses left </th>
+            </tr>
+
+          </thead>
+          <tbody class='table-group-divider'>
+            <tr class='table-secondary'>
+              <th scope='col'>Cat</th>
+              <th scope='col'>Code</th>
+              <th scope='col'>Name(EN)</th>
+              <th scope='col'>Name(TR)</th>
+              <th scope='col'>Credits</th>
+              <th scope='col'>ECTS</th>
+              <th scope='col'>Pre-requisite</th>
+            </tr>
+    ";
+    while ($row_courses = mysqli_fetch_array($run_courses)) {
+      $category = $row_courses['category'];
+      $code = $row_courses['course_code'];
+      $name_en = $row_courses['courseName_en'];
+      $name_tr = $row_courses['courseName_tr'];
+      $credits = $row_courses['credits'];
+      $ects = $row_courses['ects'];
+      $pre_req = $row_courses['pre-requisite'];
+
+      echo "
+
+            <tr>
+              <td scope='row'>$category</td>
+              <td scope='row'>$code</td>
+              <td scope='row'>$name_en</td>
+              <td scope='row'>$name_tr</td>
+              <td scope='row'>$credits</td>
+              <td scope='row'>$ects</td>
+              <td scope='row'>$pre_req</td>
+            </tr>
+        
+        ";
+    }
+  } else {
+    echo "
+    <div class='card mt-4'>
+    <div class='card-body p-4'>
+      <h5 class='text-center'> No courses left </h5>
+    </div>
+  </div>
+    ";
+  }
+}
+
+function get_credits()
+{
+  global $db;
+  $student = $_SESSION['username'];
+
+  $get_dep = "select * from students where studentId=$student";
+  $run_dep = mysqli_query($db, $get_dep);
+  $row_dep = mysqli_fetch_array($run_dep);
+  $dep = $row_dep['dId'];
+
+  $get_total = "select total_cred from departments where dId=$dep ";
+  $run_total = mysqli_query($db, $get_total);
+  $row_total = mysqli_fetch_array($run_total);
+  $total = $row_total['total_cred'];
+
+  // $get_credits = "select sum(credits) as total from (select courses.credits from courses right join semesters on semesters.course_code=courses.course_code where semesters.studentId=$student and semesters.grade !='') as disctint_course";
+  $get_credits = "select sum(credits) as total from semesters where semesters.studentId=$student and semesters.grade !=''";
+  $run_credits = mysqli_query($db, $get_credits);
+  $row_credits = mysqli_fetch_array($run_credits);
+  $credits = $row_credits['total'];
+  $diff = $total - $credits;
+
+  echo "
+    <tr>
+      <th scope='row'>Total Credits</th>
+      <td>$total</td>
+    </tr>
+    <tr>
+      <th scope='row'>Credits completed</th>
+      <td>$credits</td>
+    </tr>
+    <tr>
+      <th scope='row'>Credits left</th>
+      <td>$diff</td>
+    </tr>  
+  ";
 }

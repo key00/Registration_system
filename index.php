@@ -137,6 +137,7 @@ if (isset($_SESSION['username'])) {
         <?php getSemester() ?>
 
 
+
         </table>
       </div>
 
@@ -212,12 +213,16 @@ if (isset($_SESSION['username'])) {
 
       </div>
 
-      <div class="courses dashboard container">
+      <div class="courses dashboard active container">
+        <table class="table bg-light mt-3" style="width:50%">
+          <?php get_credits() ?>
+        </table>
+        <?php get_courses_left() ?>
         <table class="table table-hover bg-light table-borderless mt-3">
 
           <thead>
             <tr class="table-success">
-              <th class="text-center table-header" colspan="7"><?php echo $dep_name; ?> courses</th>
+              <th class="text-center table-header" colspan="7">All <?php echo $dep_name; ?> courses</th>
             </tr>
 
           </thead>
