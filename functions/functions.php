@@ -305,10 +305,10 @@ function get_credits()
   $total = $row_total['total_cred'];
 
   // $get_credits = "select sum(credits) as total from (select courses.credits from courses right join semesters on semesters.course_code=courses.course_code where semesters.studentId=$student and semesters.grade !='') as disctint_course";
-  $get_credits = "select sum(credits) as total from semesters where semesters.studentId=$student and semesters.grade !=''";
+  $get_credits = "select sum(credits) as sum_credits from semesters where semesters.studentId=$student and semesters.grade !=''";
   $run_credits = mysqli_query($db, $get_credits);
   $row_credits = mysqli_fetch_array($run_credits);
-  $credits = $row_credits['total'];
+  $credits = $row_credits['sum_credits'];
   $diff = $total - $credits;
 
   echo "

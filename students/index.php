@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require("./includes/db.php");
-require("./functions/functions.php");
+require("../includes/db.php");
+require("../functions/functions.php");
 global $con;
 if (isset($_SESSION['username'])) {
 
@@ -52,7 +52,7 @@ if (isset($_SESSION['username'])) {
   <header class="header">
     <nav class="navbar navbar-expand-lg">
       <div class="navbar-brand">
-        <a href=""><img src="images/second_logo.png" alt="" width="250" height="50" /></a>
+        <a href=""><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
       </div>
       <div class="collapse navbar-collapse px-4">
         <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
@@ -60,7 +60,7 @@ if (isset($_SESSION['username'])) {
           <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?php echo $std_num ?> </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
-              <li><a class="dropdown-item" href="logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
+              <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
               <!-- <li><hr class="dropdown-divider"></li> -->
             </ul>
           </li>
@@ -73,7 +73,7 @@ if (isset($_SESSION['username'])) {
     <div class="aside">
       <div class="profile">
         <div class="text-center">
-          <img class="user-img text-center" src="images/user3.png" alt="" />
+          <img class="user-img text-center" src="../images/user3.png" alt="" />
         </div>
         <hr />
 
@@ -213,7 +213,7 @@ if (isset($_SESSION['username'])) {
 
       </div>
 
-      <div class="courses dashboard active container">
+      <div class="courses dashboard container">
         <table class="table bg-light mt-3" style="width:50%">
           <?php get_credits() ?>
         </table>
@@ -245,7 +245,7 @@ if (isset($_SESSION['username'])) {
     </div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 

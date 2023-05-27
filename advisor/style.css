@@ -22,8 +22,8 @@ a.user.nav-link {
   border-radius: 8px;
 }
 /* ul.left {
-  margin-left: 60rem;
-} */
+    margin-left: 60rem;
+  } */
 .sidenav ul li a {
   display: block;
   text-decoration: none;
@@ -99,74 +99,3 @@ tr {
   text-transform: uppercase;
 }
 /* index pages styles end */
-
-/* login page styles start */
-.login-body {
-  background-image: url("./images/bg1_2.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.main-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.login {
-  width: 50%;
-  min-height: 400px;
-
-  background-color: #fff;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-}
-
-.login-left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-right {
-  padding: 20px;
-  text-align: center;
-  background-color: #f7f7f7;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  margin: 0.9375rem auto;
-  padding: 1.25rem;
-  width: 50%;
-  align-items: center;
-}
-
-.login-form input {
-  margin-bottom: 10px;
-}
-
-.btn-primary {
-  background-color: rgb(2, 134, 193);
-  border: rgb(2, 134, 193) solid;
-  padding: 0.625rem;
-  border-radius: 8px;
-  width: 6.25rem;
-  color: white;
-}
-
-.login-form input {
-  background-color: rgb(232, 240, 254);
-  height: 2.5rem;
-  padding: 0.625rem;
-  border-style: none;
-}
-
-.sec-title {
-  font-weight: 300;
-  color: rgb(63, 63, 63);
-}
-/* login page styles end */
