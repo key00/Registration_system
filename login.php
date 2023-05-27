@@ -58,7 +58,7 @@ if (isset($_POST['login'])) {
     session_start();
     $_SESSION['username'] = $username;
     echo "<script>alert('Login successful')</script>";
-    echo "<script>window.open('index.php','_self')</script>";
+    echo "<script>window.open('students/index.php','_self')</script>";
   }
 }
 ?>

@@ -1,7 +1,9 @@
 <?php
 
 $db = mysqli_connect("localhost", "root", "", "registration_system");
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 function getCourses()
 {
@@ -235,6 +237,7 @@ function get_courses_left()
 
   $get_courses = "select * from courses left join semesters on semesters.course_code=courses.course_code where semesters.course_code is null and courses.dId=$dep";
   $run_courses = mysqli_query($db, $get_courses);
+
   if (mysqli_num_rows($run_courses) > 0) {
     echo "
     <table class='table table-hover bg-light table-borderless mt-3'>

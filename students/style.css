@@ -56,7 +56,7 @@ a.user.nav-link {
 }
 
 .main {
-  background: url("images/bg1_2.jpg");
+  background: url("../images/bg1_2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

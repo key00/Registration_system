@@ -25,7 +25,7 @@ if (isset($_SESSION['username'])) {
   $run_dep = mysqli_query($con, $get_dep);
   $row_dep = mysqli_fetch_array($run_dep);
   $dep_name = $row_dep['departmentName'];
-} else echo "<script> window.open('login.php','_self')</script>";
+} else echo "<script> window.open('../login.php','_self')</script>";
 
 ?>
 
