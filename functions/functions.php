@@ -108,6 +108,7 @@ function getSemester()
               <td scope='row'>$grade</td>
             </tr>
             
+            
 
         ";
     }
@@ -156,6 +157,28 @@ function getTransc()
   }
 }
 
+function calculateGradePoints($grade, $credits)
+{
+  if ($grade == "AA") {
+    $gradePoints = 4 * $credits;
+  } elseif ($grade == "BA") {
+    $gradePoints = 3.5 * $credits;
+  } elseif ($grade == "BB") {
+    $gradePoints = 3 * $credits;
+  } elseif ($grade == "CB") {
+    $gradePoints = 2.5 * $credits;
+  } elseif ($grade == "CC") {
+    $gradePoints = 2 * $credits;
+  } elseif ($grade == "DC") {
+    $gradePoints = 1.5 * $credits;
+  } elseif ($grade == "DD") {
+    $gradePoints = 1 * $credits;
+  } else {
+    $gradePoints = 0 * $credits;
+  }
+  return $gradePoints;
+}
+
 
 function get_all_semesters()
 {
@@ -192,6 +215,9 @@ function get_all_semesters()
       $get_courses = "SELECT semesters.*, courses.* FROM semesters INNER JOIN courses ON semesters.course_code = courses.course_code WHERE semesters.studentId = $student AND semesters.year = '$year' AND semesters.period = '$period'";
       $run_courses = mysqli_query($db, $get_courses);
 
+      $totalCredits = 0;
+      $totalGradePoints = 0;
+
       while ($row_course = mysqli_fetch_array($run_courses)) {
         $category = $row_course['category'];
         $code = $row_course['course_code'];
@@ -213,9 +239,21 @@ function get_all_semesters()
           <td scope='row'>$lecturer</td>
           <td scope='row'>$grade</td>
         </tr>
+        
         ";
+        $gradePoints = calculateGradePoints($grade, $credits);
+        $totalCredits += $credits;
+        $totalGradePoints += $gradePoints;
+
+        $semesterGPA = $totalGradePoints / $totalCredits;
+        $formattedGPA = number_format($semesterGPA, 2);
       }
-      echo "</tbody></table>";
+      echo "  </tbody>
+              <tfoot class='table-group-divider'>
+                <th class='text-end' colspan='7'> GPA: </th>
+                <th > $formattedGPA </th>
+              </tfoot>
+            </table>";
     }
   } else {
     echo "<div class='card mt-4'>

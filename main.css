@@ -68,3 +68,14 @@
   color: rgb(63, 63, 63);
 }
 /* login page styles end */
+
+/* table styles start*/
+
+tfoot {
+  border-top: 1px solid grey;
+  line-height: 35px;
+}
+.table-group-divider {
+  border-top: 1px solid grey;
+}
+/* table styles end */
