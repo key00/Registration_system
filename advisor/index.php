@@ -26,7 +26,7 @@ require("../functions/functions.php");
 </head>
 
 <body>
-    <header class="header">
+    <header class="header fixed-top">
         <nav class="navbar navbar-expand-lg">
             <div class="navbar-brand">
                 <a href=""><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
@@ -69,10 +69,10 @@ require("../functions/functions.php");
         <div class="main">
 
             <div class="students dashboard active container mt-3">
-                <div class="card">
-                    <div class="card-body p-4">
+                <div class="search-box">
+                    <input type="text" name="stdId" id="" placeholder="search Student Number">
+                    <button class="btn" id="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
 
-                    </div>
                 </div>
 
 

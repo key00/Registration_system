@@ -213,11 +213,12 @@ function get_all_semesters()
       <table class='table table-hover bg-light table-borderless mt-3'>
       <thead>
         <tr class='table-success'>
-          <th class='text-center table-header' colspan='8'>$period $year</th>
+          <th class='text-center table-header' colspan='9'>$period $year</th>
         </tr>
       </thead>
       <tbody class='table-group-divider'>
         <tr class='table-secondary'>
+          <th scope='col'>R</th>
           <th scope='col'>Cat</th>
           <th scope='col'>Code</th>
           <th scope='col'>Name(EN)</th>
@@ -236,6 +237,9 @@ function get_all_semesters()
       $totalGradePoints = 0;
 
       while ($row_course = mysqli_fetch_array($run_courses)) {
+
+
+
         $category = $row_course['category'];
         $code = $row_course['course_code'];
         $name_en = $row_course['courseName_en'];
@@ -245,19 +249,12 @@ function get_all_semesters()
         $lecturer = $row_course['lecturer'];
         $grade = $row_course['grade'];
 
-        echo "
-        <tr>
-          <td scope='row'>$category</td>
-          <td scope='row'>$code</td>
-          <td scope='row'>$name_en</td>
-          <td scope='row'>$name_tr</td>
-          <td scope='row'>$credits</td>
-          <td scope='row'>$ects</td>
-          <td scope='row'>$lecturer</td>
-          <td scope='row'>$grade</td>
-        </tr>
-        
-        ";
+
+        $get_count = "SELECT COUNT(*) AS count FROM semesters WHERE studentId = $student and course_code='$code'";
+        $run_count = mysqli_query($db, $get_count);
+        $row_count = mysqli_fetch_array($run_count);
+        $count = $row_count['count'];
+
         $gradePoints = calculateGradePoints($grade, $credits);
         $totalCredits += $credits;
         $totalGradePoints += $gradePoints;
@@ -270,8 +267,25 @@ function get_all_semesters()
 
         $cgpa = $cumulativeGradePoints / $cumulativeCredits;
         $formattedCGPA = number_format($cgpa, 2);
+
+        echo "
+        <tr>
+          <td scope='row'>$count</td>
+          <td scope='row'>$category</td>
+          <td scope='row'>$code</td>
+          <td scope='row'>$name_en</td>
+          <td scope='row'>$name_tr</td>
+          <td scope='row'>$credits</td>
+          <td scope='row'>$ects</td>
+          <td scope='row'>$lecturer</td>
+          <td scope='row'>$grade</td>
+        </tr>
+        
+        
+        ";
       }
-      echo "  </tbody>
+      echo " 
+              </tbody>
               <tfoot>
               <tr>
                 <th class='text-end' colspan='7'> GPA: </th>
@@ -331,8 +345,8 @@ function get_courses_left()
       $code = $row_courses['course_code'];
       $name_en = $row_courses['courseName_en'];
       $name_tr = $row_courses['courseName_tr'];
-      $credits = $row_courses['credits'];
       $ects = $row_courses['ects'];
+      $credits = $row_courses['credits'];
       $pre_req = $row_courses['pre-requisite'];
 
       echo "
@@ -376,7 +390,7 @@ function get_credits()
   $total = $row_total['total_cred'];
 
   // $get_credits = "select sum(credits) as total from (select courses.credits from courses right join semesters on semesters.course_code=courses.course_code where semesters.studentId=$student and semesters.grade !='') as disctint_course";
-  $get_credits = "select sum(credits) as sum_credits from semesters where semesters.studentId=$student and semesters.grade !=''";
+  $get_credits = "select sum(credits) as sum_credits from semesters where semesters.studentId=$student and semesters.grade !='' and semesters.grade!='NA' and semesters.grade!='FF';";
   $run_credits = mysqli_query($db, $get_credits);
   $row_credits = mysqli_fetch_array($run_credits);
   $credits += $row_credits['sum_credits'];

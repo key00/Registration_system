@@ -5,6 +5,7 @@
 /* index pages styles start */
 .wrapper {
   min-height: 100vh;
+  margin-top: 75px;
 }
 .header {
   background-color: #e4572e;
@@ -51,12 +52,17 @@ a.user.nav-link {
 }
 
 .wrapper {
-  display: grid;
-  grid-template-columns: auto 4fr;
+  display: flex;
 }
-
+.aside {
+  position: fixed;
+  width: 300px;
+}
 .main {
-  background: url("images/bg1_2.jpg");
+  margin-left: 300px;
+  flex-grow: 1;
+  overflow-y: auto;
+  background: url("../images/bg1_2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -99,3 +105,36 @@ tr {
   text-transform: uppercase;
 }
 /* index pages styles end */
+
+.search-box {
+  height: 50px;
+  max-width: 800px;
+  width: 100%;
+  /* margin: 10px 20px; */
+}
+
+.search-box input {
+  outline: none;
+  background: #fff;
+  border: 2px solid #efeef1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+  height: 100%;
+}
+.search-box i.fa-magnifying-glass {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  background: rgb(209, 231, 221);
+  border-radius: 4px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+
+.search-box i.fa-magnifying-glass:hover {
+  background: rgb(152, 196, 176);
+}
