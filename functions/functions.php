@@ -50,19 +50,15 @@ function getSemester()
   $student = $_SESSION['username'];
   $get_semester = "select * from semesters where studentId=$student and year='2022-2023' and period='Spring'";
   $run_semester = mysqli_query($db, $get_semester);
-  $row_semester = mysqli_fetch_array($run_semester);
-  if ($row_semester > 0) {
-    $year = $row_semester['year'];
-    $period = $row_semester['period'];
-    $code = $row_semester['course_code'];
-    $lecturer = $row_semester['lecturer'];
-    $grade = $row_semester['grade'];
+
+
+  if (mysqli_num_rows($run_semester) > 0) {
 
     echo "
     <table class='table table-hover bg-light table-borderless mt-3'>
     <thead>
             <tr class='table-success'>
-              <th class='text-center table-header' colspan='8'> $period $year</th>
+              <th class='text-center table-header' colspan='8'> Spring 2022-2023</th>
             </tr>
 
           </thead>
@@ -79,6 +75,8 @@ function getSemester()
             </tr>
     ";
 
+    $totalCredits = 0;
+    $totalGradePoints = 0;
 
     while ($row_semester = mysqli_fetch_array($run_semester)) {
 
@@ -111,7 +109,23 @@ function getSemester()
             
 
         ";
+      $gradePoints = calculateGradePoints($grade, $credits);
+      $totalCredits += $credits;
+      $totalGradePoints += $gradePoints;
+
+      $semesterGPA = $totalGradePoints / $totalCredits;
+      $formattedGPA = number_format($semesterGPA, 2);
     }
+    echo "
+      <tfoot>
+      <tr>
+        <th class='text-end' colspan='7'> GPA: </th>
+        <th > $formattedGPA </th>
+      </tr>
+      
+        
+      </tfoot>
+      ";
   } else {
     echo "<div class='card mt-4'>
     <div class='card-body p-4'>
@@ -188,6 +202,9 @@ function get_all_semesters()
   $run_semesters = mysqli_query($db, $get_semesters);
 
   if (mysqli_num_rows($run_semesters) > 0) {
+    $cumulativeCredits = 0;
+    $cumulativeGradePoints = 0;
+
     while ($row_semester = mysqli_fetch_array($run_semesters)) {
       $year = $row_semester['year'];
       $period = $row_semester['period'];
@@ -247,11 +264,24 @@ function get_all_semesters()
 
         $semesterGPA = $totalGradePoints / $totalCredits;
         $formattedGPA = number_format($semesterGPA, 2);
+
+        $cumulativeCredits += $credits;
+        $cumulativeGradePoints += $gradePoints;
+
+        $cgpa = $cumulativeGradePoints / $cumulativeCredits;
+        $formattedCGPA = number_format($cgpa, 2);
       }
       echo "  </tbody>
-              <tfoot class='table-group-divider'>
+              <tfoot>
+              <tr>
                 <th class='text-end' colspan='7'> GPA: </th>
                 <th > $formattedGPA </th>
+              </tr>
+              <tr>
+                <th class='text-end' colspan='7'> CGPA: </th>
+                <th > $formattedCGPA </th>
+              </tr>
+                
               </tfoot>
             </table>";
     }
@@ -334,7 +364,7 @@ function get_credits()
 {
   global $db;
   $student = $_SESSION['username'];
-
+  $credits = 0;
   $get_dep = "select * from students where studentId=$student";
   $run_dep = mysqli_query($db, $get_dep);
   $row_dep = mysqli_fetch_array($run_dep);
@@ -349,7 +379,7 @@ function get_credits()
   $get_credits = "select sum(credits) as sum_credits from semesters where semesters.studentId=$student and semesters.grade !=''";
   $run_credits = mysqli_query($db, $get_credits);
   $row_credits = mysqli_fetch_array($run_credits);
-  $credits = $row_credits['sum_credits'];
+  $credits += $row_credits['sum_credits'];
   $diff = $total - $credits;
 
   echo "

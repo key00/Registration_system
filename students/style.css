@@ -3,7 +3,11 @@
   margin: 0;
 }
 /* index pages styles start */
+/* header {
+  height: 80px;
+} */
 .wrapper {
+  margin-top: 75px;
   min-height: 100vh;
 }
 .header {
@@ -37,7 +41,7 @@ a.user.nav-link {
 }
 .sidenav ul li {
   list-style: none;
-  height: 50px;
+  min-height: 50px;
   padding: 10px;
   border-radius: 8px;
 }
@@ -51,11 +55,16 @@ a.user.nav-link {
 }
 
 .wrapper {
-  display: grid;
-  grid-template-columns: auto 4fr;
+  display: flex;
 }
-
+.aside {
+  position: fixed;
+  width: 320px;
+}
 .main {
+  margin-left: 320px;
+  flex-grow: 1;
+  overflow-y: auto;
   background: url("../images/bg1_2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -97,5 +106,10 @@ tr {
 
 .full_name {
   text-transform: uppercase;
+}
+
+.row-tables {
+  display: flex;
+  justify-content: space-around;
 }
 /* index pages styles end */

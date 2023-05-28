@@ -50,7 +50,7 @@ if (isset($_SESSION['username'])) {
 </head>
 
 <body>
-  <header class="header">
+  <header class="header fixed-top">
     <nav class="navbar navbar-expand-lg">
       <div class="navbar-brand">
         <a href=""><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
@@ -135,7 +135,8 @@ if (isset($_SESSION['username'])) {
       <div class="current dashboard container">
 
 
-        <?php getSemester() ?>
+        <?php getSemester()
+        ?>
 
 
 
@@ -215,9 +216,31 @@ if (isset($_SESSION['username'])) {
       </div>
 
       <div class="courses dashboard container">
-        <table class="table bg-light mt-3" style="width:50%">
-          <?php get_credits() ?>
-        </table>
+        <div class="row row-tables">
+          <div class="col-lg-6">
+            <table class="table bg-light mt-3 pe-4">
+              <?php get_credits() ?>
+            </table>
+          </div>
+          <div class="col-lg-6">
+            <table class="table bg-light mt-3">
+              <tr>
+                <th>CC</th>
+                <td>Compulsory Course</td>
+              </tr>
+              <tr>
+                <th>TE</th>
+                <td>Technical Elective</td>
+              </tr>
+              <tr>
+                <th>NTE</th>
+                <td>Non-Technial Elective</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+
         <?php get_courses_left() ?>
         <table class="table table-hover bg-light table-borderless mt-3">
 
@@ -237,7 +260,8 @@ if (isset($_SESSION['username'])) {
               <th scope="col">ECTS</th>
               <th scope="col">Pre-requisite</th>
             </tr>
-            <?php getCourses() ?>
+            <?php getCourses()
+            ?>
 
           </tbody>
         </table>
