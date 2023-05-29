@@ -69,12 +69,55 @@ require("../functions/functions.php");
         <div class="main">
 
             <div class="students dashboard active container mt-3">
-                <div class="search-box">
+                <div class="search-box my-3">
                     <input type="text" name="stdId" id="" placeholder="search Student Number">
                     <button class="btn" id="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
 
                 </div>
+                <div class="std-section mb-3">
+                    <ul class="nav nav-pills mb-4" id="myTab" role="tablist">
 
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="semester-tab" data-bs-toggle="tab" data-bs-target="#semester-tab-pane" type="button" role="tab" aria-controls="semester-tab-pane" aria-selected="false"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="transc-tab" data-bs-toggle="tab" data-bs-target="#transc-tab-pane" type="button" role="tab" aria-controls="transc-tab-pane" aria-selected="false"><i class="fa-solid fa-scroll pe-3"></i>Transcript</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="course-tab" data-bs-toggle="tab" data-bs-target="#course-tab-pane" type="button" role="tab" aria-controls="course-tab-pane" aria-selected="false"><i class="fa-brands fa-discourse pe-3"></i>Courses</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="transfer-tab" data-bs-toggle="tab" data-bs-target="#transfer-tab-pane" type="button" role="tab" aria-controls="transfer-tab-pane" aria-selected="false"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
+                            hello1
+
+                        </div>
+                        <div class="tab-pane fade show" id="semester-tab-pane" role="tabpanel" aria-labelledby="semester-tab" tabindex="0">
+                            hello5
+
+                        </div>
+                        <div class="tab-pane fade" id="transc-tab-pane" role="tabpanel" aria-labelledby="transc-tab" tabindex="0">
+                            hello2
+
+                        </div>
+                        <div class="tab-pane fade" id="course-tab-pane" role="tabpanel" aria-labelledby="course-tab" tabindex="0">
+                            hello3
+
+                        </div>
+                        <div class="tab-pane fade" id="transfer-tab-pane" role="tabpanel" aria-labelledby="transfer-tab" tabindex="0">
+                            hello4
+
+                        </div>
+                    </div>
+
+
+                </div>
 
             </div>
 

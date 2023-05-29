@@ -110,7 +110,6 @@ tr {
   height: 50px;
   max-width: 800px;
   width: 100%;
-  /* margin: 10px 20px; */
 }
 
 .search-box input {
@@ -137,4 +136,28 @@ tr {
 
 .search-box i.fa-magnifying-glass:hover {
   background: rgb(152, 196, 176);
+}
+
+.std-section {
+  background: #fff;
+  border-radius: 10px;
+  min-height: 600px;
+}
+/* .nav-pills {
+  justify-content: space-between;
+} */
+.nav-pills .nav-link {
+  color: rgb(33, 37, 41);
+  background-color: rgb(227, 238, 233);
+  line-height: 40px;
+}
+
+.nav-pills .nav-link.active {
+  color: rgb(33, 37, 41) !important;
+  background-color: rgb(209, 231, 221) !important;
+}
+.nav-pills .nav-link:hover {
+  background-color: rgb(227, 238, 233) !important;
+  color: rgb(33, 37, 41) !important;
+  border-radius: 8px;
 }
