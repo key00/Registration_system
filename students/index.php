@@ -2,7 +2,7 @@
 
 session_start();
 require("../includes/db.php");
-require("../functions/functions.php");
+require("../students/functions.php");
 global $con;
 if (isset($_SESSION['username'])) {
 

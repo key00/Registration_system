@@ -2,7 +2,7 @@
 
 session_start();
 require("../includes/db.php");
-require("../functions/functions.php");
+require("../advisor/get_student.php");
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +70,10 @@ require("../functions/functions.php");
 
             <div class="students dashboard active container mt-3">
                 <div class="search-box my-3">
-                    <input type="text" name="stdId" id="" placeholder="search Student Number">
-                    <button class="btn" id="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <form action="" method="POST">
+                        <input type="text" name="stdId" id="" placeholder="search Student Number">
+                        <button class="btn" type="submit" name="search_student"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
 
                 </div>
                 <div class="std-section mb-3">
@@ -95,8 +97,58 @@ require("../functions/functions.php");
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
-                            hello1
+                            <?php
+                            if (isset($_POST['search_student'])) {
+                                $student = $_POST['stdId'];
+                                $student_info = get_info($student);
+                                $fname = $student_info['firstName'];
+                                $lname = $student_info['lastName'];
+                                $dob = $student_info['date_birth'];
+                                $gender = $student_info['gender'];
+                                $stdmail = $student_info['stdEmail'];
+                                $country = $student_info['country'];
+                                $pass_num = $student_info['passportNum'];
+                                $scholarship = $student_info['scholarship'];
+                                $advisor = $student_info['advisor'];
+                                $department = $student_info['dId'];
 
+                                $get_dep = "select * from departments where dId=$department";
+                                $run_dep = mysqli_query($con, $get_dep);
+                                $row_dep = mysqli_fetch_array($run_dep);
+                                $dep_name = $row_dep['departmentName'];
+                                echo "
+                                        <div class='card'>
+                                            <div class='card-body p-4'>
+                                                <div class='row info'>
+                                                    <div class='col-5 col-md-5'>
+                                                        <p>Name: $fname</p>
+                                                        <p>Surname: $lname</p>
+                                                        <p>Date of Birth: $dob</p>
+                                                        <p>Gender: $gender</p>
+                                                        <p>Email: $stdmail</p>
+                                                    </div>
+                                                    <div class='col-5 col-md-5'>
+                                                        <p>Country of Origin: $country</p>
+                                                        <p>Passport Number: $pass_num</p>
+                                                        <p>Father's Name: Niyungeko Deo</p>
+                                                        <p>Mother's Name: Nsabimana Laetitia</p>
+                                                        <p>Tel: 05338857918</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='card mt-3'>
+                                           <div class='card-body p-4'>
+                                             <p><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</p>
+                                             <p><i class='fa-solid fa-building pe-3'></i>Department:  $dep_name </p>
+                                             <p><i class='fa-solid fa-inbox pe-3'></i>Status: Active Student</p>
+                                             <p><i class='fa-solid fa-graduation-cap pe-3'></i>Scholarship:  $scholarship %</p>
+                                             <p class='full_name'><i class='fa-solid fa-user-group pe-3'> </i>Advisor:  $advisor </p>
+                                           </div>
+                                        </div>
+                                        ";
+                            }
+                            ?>
                         </div>
                         <div class="tab-pane fade show" id="semester-tab-pane" role="tabpanel" aria-labelledby="semester-tab" tabindex="0">
                             hello5
@@ -114,8 +166,8 @@ require("../functions/functions.php");
                             hello4
 
                         </div>
-                    </div>
 
+                    </div>
 
                 </div>
 
