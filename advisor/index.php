@@ -63,26 +63,16 @@ require("../advisor/functions.php");
                         <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
                             <ul class="nav nav-pills my-4 ps-3">
 
-                                <li class="nav-item info content <?php if (isset($_GET['student_info'])) {
-                                                                        echo "active";
-                                                                    } ?>"> <a href="index.php?student_info"><i class="fa-solid fa-circle-info pe-3"></i> Personal Informations</a>
+                                <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
                                 </li>
-                                <li class="nav-item semester content <?php if (isset($_GET['semester'])) {
-                                                                            echo "active";
-                                                                        } ?>"> <a href="index.php?semester"><i class="fa-solid fa-location-pin pe-3"></i> Current Semester</a>
+                                <li class="nav-item semester content "> <i class="fa-solid fa-location-pin pe-3"></i> Current Semester
                                 </li>
-                                <li class="nav-item transc content <?php if (isset($_GET['transcript'])) {
-                                                                        echo "active";
-                                                                    } ?>"> <a href="index.php?transcript"><i class="fa-solid fa-scroll pe-3"></i> Transcript</a>
+                                <li class="nav-item transc content "> <i class="fa-solid fa-scroll pe-3"></i> Transcript
                                 </li>
-                                <li class="nav-item course content <?php if (isset($_GET['course'])) {
-                                                                        echo "active";
-                                                                    } ?>"> <a href="index.php?course"><i class="fa-brands fa-discourse pe-3"></i> Courses</a>
+                                <li class="nav-item course content "> <i class="fa-brands fa-discourse pe-3"></i> Courses
                                 </li>
-                                <li class="nav-item transfer content <?php if (isset($_GET['transfer'])) {
-                                                                            echo "active";
-                                                                        } ?>"> <a href="index.php?transfer"><i class="fa-solid fa-paper-plane pe-3"></i> Transfer Courses</a>
-                                </li>
+                                <!-- <li class="nav-item transfer content "> <i class="fa-solid fa-paper-plane pe-3"></i> Transfer Courses
+                                </li> -->
                             </ul>
                         </li>
 
@@ -100,31 +90,36 @@ require("../advisor/functions.php");
                     </form>
 
                 </div>
-                <div class="std-section mb-3">
 
+                <div class="info dashboard active">
                     <?php
-                    if (isset($_GET['student_info'])) {
-                        include("student_info.php");
-                    }
 
-                    if (isset($_GET['semester'])) {
-                        include("semester.php");
-                    }
-                    if (isset($_GET['transcript'])) {
-                        include("transcript.php");
-                    }
+                    include("student_info.php");
+                    ?>
+                </div>
+
+                <div class="semester dashboard">
+                    <?php
+
+                    include("semester.php");
+                    ?>
+                </div>
 
 
-                    if (isset($_GET['course'])) {
-                        include("course.php");
-                    }
-                    if (isset($_GET['transfer'])) {
-                        include("transfer.php");
-                    }
+                <div class="transc dashboard">
+                    <?php
+                    include("transcript.php");
 
                     ?>
-
                 </div>
+
+
+                <div class="course dashboard">
+                    <?php
+                    include("course.php");
+                    ?>
+                </div>
+
 
             </div>
 
@@ -132,7 +127,7 @@ require("../advisor/functions.php");
 
         </div>
     </div>
-    <!-- <script src="script.js"></script> -->
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 

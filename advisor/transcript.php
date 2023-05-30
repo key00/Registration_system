@@ -26,89 +26,89 @@ if (isset($_POST['search_student'])) {
 
 ?>
 
-            <div class="transc dashboard active">
-
-                <table class='table table-hover bg-light table-borderless mt-3'>
-                    <thead>
-                        <tr class='table-success'>
-                            <th class='text-center table-header' colspan='9'><?php echo $period . "&nbsp" . $year; ?></th>
-                        </tr>
-                    </thead>
-                    <tbody class='table-group-divider'>
-                        <tr class='table-secondary'>
-                            <th scope='col'>R</th>
-                            <th scope='col'>Cat</th>
-                            <th scope='col'>Code</th>
-                            <th scope='col'>Name(EN)</th>
-                            <th scope='col'>Name(TR)</th>
-                            <th scope='col'>Credits</th>
-                            <th scope='col'>ECTS</th>
-                            <th scope='col'>Lecturer</th>
-                            <th scope='col'>Grade</th>
-                        </tr>
-
-                        <?php
-                        while ($row_course = mysqli_fetch_array($run_courses)) {
 
 
+            <table class='table table-hover bg-light table-borderless mt-3'>
+                <thead>
+                    <tr class='table-success'>
+                        <th class='text-center table-header' colspan='9'><?php echo $period . "&nbsp" . $year; ?></th>
+                    </tr>
+                </thead>
+                <tbody class='table-group-divider'>
+                    <tr class='table-secondary'>
+                        <th scope='col'>R</th>
+                        <th scope='col'>Cat</th>
+                        <th scope='col'>Code</th>
+                        <th scope='col'>Name(EN)</th>
+                        <th scope='col'>Name(TR)</th>
+                        <th scope='col'>Credits</th>
+                        <th scope='col'>ECTS</th>
+                        <th scope='col'>Lecturer</th>
+                        <th scope='col'>Grade</th>
+                    </tr>
 
-                            $category = $row_course['category'];
-                            $code = $row_course['course_code'];
-                            $name_en = $row_course['courseName_en'];
-                            $name_tr = $row_course['courseName_tr'];
-                            $credits = $row_course['credits'];
-                            $ects = $row_course['ects'];
-                            $lecturer = $row_course['lecturer'];
-                            $grade = $row_course['grade'];
+                    <?php
+                    while ($row_course = mysqli_fetch_array($run_courses)) {
 
 
-                            $get_count = "SELECT COUNT(*) AS count FROM semesters WHERE studentId = $student and course_code='$code'";
-                            $run_count = mysqli_query($con, $get_count);
-                            $row_count = mysqli_fetch_array($run_count);
-                            $count = $row_count['count'];
 
-                            $gradePoints = calculateGradePoints($grade, $credits);
-                            $totalCredits += $credits;
-                            $totalGradePoints += $gradePoints;
+                        $category = $row_course['category'];
+                        $code = $row_course['course_code'];
+                        $name_en = $row_course['courseName_en'];
+                        $name_tr = $row_course['courseName_tr'];
+                        $credits = $row_course['credits'];
+                        $ects = $row_course['ects'];
+                        $lecturer = $row_course['lecturer'];
+                        $grade = $row_course['grade'];
 
-                            $semesterGPA = $totalGradePoints / $totalCredits;
-                            $formattedGPA = number_format($semesterGPA, 2);
 
-                            $cumulativeCredits += $credits;
-                            $cumulativeGradePoints += $gradePoints;
+                        $get_count = "SELECT COUNT(*) AS count FROM semesters WHERE studentId = $student and course_code='$code'";
+                        $run_count = mysqli_query($con, $get_count);
+                        $row_count = mysqli_fetch_array($run_count);
+                        $count = $row_count['count'];
 
-                            $cgpa = $cumulativeGradePoints / $cumulativeCredits;
-                            $formattedCGPA = number_format($cgpa, 2);
-                        ?>
+                        $gradePoints = calculateGradePoints($grade, $credits);
+                        $totalCredits += $credits;
+                        $totalGradePoints += $gradePoints;
 
-                            <tr>
-                                <td scope='row'><?php echo $count; ?></td>
-                                <td scope='row'><?php echo $category; ?></td>
-                                <td scope='row'><?php echo $code; ?></td>
-                                <td scope='row'><?php echo $name_en; ?></td>
-                                <td scope='row'><?php echo $name_tr; ?></td>
-                                <td scope='row'><?php echo $credits; ?></td>
-                                <td scope='row'><?php echo $ects; ?></td>
-                                <td scope='row'><?php echo $lecturer; ?></td>
-                                <td scope='row'><?php echo $grade; ?></td>
-                            </tr>
+                        $semesterGPA = $totalGradePoints / $totalCredits;
+                        $formattedGPA = number_format($semesterGPA, 2);
 
-                        <?php } ?>
+                        $cumulativeCredits += $credits;
+                        $cumulativeGradePoints += $gradePoints;
 
-                    </tbody>
-                    <tfoot>
+                        $cgpa = $cumulativeGradePoints / $cumulativeCredits;
+                        $formattedCGPA = number_format($cgpa, 2);
+                    ?>
+
                         <tr>
-                            <th class='text-end' colspan='7'> GPA: </th>
-                            <th> <?php echo $formattedGPA; ?> </th>
-                        </tr>
-                        <tr>
-                            <th class='text-end' colspan='7'> CGPA: </th>
-                            <th> <?php echo $formattedCGPA; ?> </th>
+                            <td scope='row'><?php echo $count; ?></td>
+                            <td scope='row'><?php echo $category; ?></td>
+                            <td scope='row'><?php echo $code; ?></td>
+                            <td scope='row'><?php echo $name_en; ?></td>
+                            <td scope='row'><?php echo $name_tr; ?></td>
+                            <td scope='row'><?php echo $credits; ?></td>
+                            <td scope='row'><?php echo $ects; ?></td>
+                            <td scope='row'><?php echo $lecturer; ?></td>
+                            <td scope='row'><?php echo $grade; ?></td>
                         </tr>
 
-                    </tfoot>
-                </table>
-    <?php
+                    <?php } ?>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class='text-end' colspan='7'> GPA: </th>
+                        <th> <?php echo $formattedGPA; ?> </th>
+                    </tr>
+                    <tr>
+                        <th class='text-end' colspan='7'> CGPA: </th>
+                        <th> <?php echo $formattedCGPA; ?> </th>
+                    </tr>
+
+                </tfoot>
+            </table>
+<?php
         }
     } else {
         echo "<div class='card mt-4'>
@@ -119,6 +119,4 @@ if (isset($_POST['search_student'])) {
     }
 }
 
-    ?>
-
-            </div>
+?>

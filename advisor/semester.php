@@ -12,7 +12,7 @@ if (isset($_POST['search_student'])) {
         $totalCredits = 0;
         $totalGradePoints = 0;
 ?>
-        <div class="semester dashboard active">
+        <form method="post" action="">
 
             <table class='table table-hover bg-light table-borderless mt-3'>
                 <thead>
@@ -68,23 +68,20 @@ if (isset($_POST['search_student'])) {
                         </tr>
 
                     <?php
-                        $gradePoints = calculateGradePoints($grade, $credits);
-                        $totalCredits += $credits;
-                        $totalGradePoints += $gradePoints;
 
-                        $semesterGPA = $totalGradePoints / $totalCredits;
-                        $formattedGPA = number_format($semesterGPA, 2);
                     } ?>
 
                 <tfoot>
+
                     <tr>
-                        <th class='text-end' colspan='7'> GPA: </th>
-                        <th> <?php echo $formattedGPA; ?> </th>
+                        <td><button type="submit" name="update" class="btn btn-success"><span class="me-2"><i class="fa-solid fa-arrows-rotate"></i></span>Update</button></td>
                     </tr>
 
-
                 </tfoot>
-        <?php
+                </tbody>
+            </table>
+        </form>
+<?php
     } else {
         echo "<div class='card mt-4'>
     <div class='card-body p-4'>
@@ -93,6 +90,23 @@ if (isset($_POST['search_student'])) {
   </div>";
     }
 }
-        ?>
+?>
 
-        </div>
+<?php
+function delete_course()
+{
+    global $con;
+
+    if (isset($_POST['update'])) {
+        foreach ($_POST['remove'] as $remove_course) {
+            $delete_course = "delete from semesters where course_code='$remove_course'";
+            $run_delete = mysqli_query($con, $delete_course);
+            if ($run_delete) {
+                echo "<script> alert('Course(s) deleted')</script>";
+            } else echo "<script> alert('A problem occured while deleting courses(s)')</script>";
+        }
+    }
+}
+echo @$up_course = delete_course();
+
+?>

@@ -21,12 +21,12 @@
             $(".semester.dashboard").addClass("active");
           }
 
-          if ($(this).hasClass("transc")) {
-            $(".transc.dashboard").addClass("active");
-          }
-
           if ($(this).hasClass("course")) {
             $(".course.dashboard").addClass("active");
+          }
+
+          if ($(this).hasClass("transc")) {
+            $(".transc.dashboard").addClass("active");
           }
 
           if ($(this).hasClass("transfer")) {

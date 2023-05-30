@@ -159,11 +159,19 @@ if (isset($_SESSION['username'])) {
         $row_transfer = mysqli_fetch_array($run_transfer);
         if ($row_transfer == 0) {
           echo "
-          <div class='card mt-4'>
-            <div class='card-body p-4'>
-              <h5 class='text-center'>No transfer courses available</h5>
-            </div>
-          </div>
+                    <table class='table table-hover bg-light table-borderless mt-3'>
+
+            <thead class='table-success'>
+              <tr>
+                <th class='text-center table-header ' colspan='7'>Transfer Courses</th>
+              </tr>
+
+            </thead></table>
+                    <div class='card mt-4'>
+                      <div class='card-body p-4'>
+                        <h5 class='text-center'>No transfer courses available</h5>
+                      </div>
+                    </div>
           
           ";
         } else {
@@ -215,7 +223,7 @@ if (isset($_SESSION['username'])) {
 
       </div>
 
-      <div class="courses dashboard container">
+      <div class="courses dashboard active container">
         <div class="row row-tables">
           <div class="col-lg-6">
             <table class="table bg-light mt-3 pe-4">

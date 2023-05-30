@@ -317,7 +317,8 @@ function get_courses_left()
   $row_dep = mysqli_fetch_array($run_dep);
   $dep = $row_dep['dId'];
 
-  $get_courses = "select * from courses left join semesters on semesters.course_code=courses.course_code where semesters.course_code is null and courses.dId=$dep";
+  $get_courses = "SELECT * FROM courses WHERE NOT EXISTS ( SELECT 1 FROM semesters WHERE semesters.course_code = courses.course_code AND semesters.studentId = $student );";
+
   $run_courses = mysqli_query($db, $get_courses);
 
   if (mysqli_num_rows($run_courses) > 0) {
@@ -389,8 +390,8 @@ function get_credits()
   $row_total = mysqli_fetch_array($run_total);
   $total = $row_total['total_cred'];
 
-  // $get_credits = "select sum(credits) as total from (select courses.credits from courses right join semesters on semesters.course_code=courses.course_code where semesters.studentId=$student and semesters.grade !='') as disctint_course";
-  $get_credits = "select sum(credits) as sum_credits from semesters where semesters.studentId=$student and semesters.grade !='' and semesters.grade!='NA' and semesters.grade!='FF';";
+  $get_credits = "select sum(credits) as sum_credits from courses right join semesters on semesters.course_code=courses.course_code where semesters.studentId=$student and semesters.grade !='' and  semesters.grade !='NA' and  semesters.grade !='FF'";
+  // $get_credits = "select sum(credits) as sum_credits from semesters where semesters.studentId=$student and semesters.grade !='' and semesters.grade!='NA' and semesters.grade!='FF';";
   $run_credits = mysqli_query($db, $get_credits);
   $row_credits = mysqli_fetch_array($run_credits);
   $credits += $row_credits['sum_credits'];
@@ -419,26 +420,28 @@ function get_transfer()
   $get_transfer = "select * from transfer where studentId=$student";
   $run_transfer = mysqli_query($con, $get_transfer);
 
+  echo "<table class='table table-hover bg-light table-borderless mt-3'>
+
+  <thead class='table-success'>
+    <tr>
+      <th class='text-center table-header ' colspan='7'>Transfer Courses</th>
+    </tr>
+
+  </thead>
+  <tbody class='table-group-divider'>
+    <tr class='table-secondary'>
+      <th scope='col'>Cat</th>
+      <th scope='col'>Code</th>
+      <th scope='col'>course Name(EN)</th>
+      <th scope='col'>course Name(TR)</th>
+      <th scope='col'>Credits</th>
+      <th scope='col'>ECTS</th>
+      <th scope='col'>Grade</th>
+    </tr>
+  ";
+
   if (mysqli_num_rows($run_transfer) > 0) {
-    echo "<table class='table table-hover bg-light table-borderless mt-3'>
 
-            <thead class='table-success'>
-              <tr>
-                <th class='text-center table-header ' colspan='7'>Transfer Courses</th>
-              </tr>
-
-            </thead>
-            <tbody class='table-group-divider'>
-              <tr class='table-secondary'>
-                <th scope='col'>Cat</th>
-                <th scope='col'>Code</th>
-                <th scope='col'>course Name(EN)</th>
-                <th scope='col'>course Name(TR)</th>
-                <th scope='col'>Credits</th>
-                <th scope='col'>ECTS</th>
-                <th scope='col'>Grade</th>
-              </tr>
-            ";
 
     while ($row_transfer = mysqli_fetch_array($run_transfer)) {
       $code = $row_transfer['CourseCode'];
