@@ -428,7 +428,17 @@ function get_transfer()
               </tr>
 
             </thead>
-            <tbody class='table-group-divider'>";
+            <tbody class='table-group-divider'>
+              <tr class='table-secondary'>
+                <th scope='col'>Cat</th>
+                <th scope='col'>Code</th>
+                <th scope='col'>course Name(EN)</th>
+                <th scope='col'>course Name(TR)</th>
+                <th scope='col'>Credits</th>
+                <th scope='col'>ECTS</th>
+                <th scope='col'>Grade</th>
+              </tr>
+            ";
 
     while ($row_transfer = mysqli_fetch_array($run_transfer)) {
       $code = $row_transfer['CourseCode'];
@@ -440,35 +450,21 @@ function get_transfer()
       $grade = $row_transfer['grade'];
 
       echo "
-            
-              <tr class='table-secondary'>
-                <th scope='col'>Cat</th>
-                <th scope='col'>Code</th>
-                <th scope='col'>course Name(EN)</th>
-                <th scope='col'>course Name(TR)</th>
-                <th scope='col'>Credits</th>
-                <th scope='col'>ECTS</th>
-                <th scope='col'>Grade</th>
-              </tr>
-              <tr>
-                <td scope='row'><?php echo $category; ?></td>
-                <td scope='row'><?php echo $code; ?></td>
-                <td scope='row'><?php echo $name_en; ?></td>
-                <td scope='row'><?php echo $name_tr; ?></td>
-                <td scope='row'><?php echo $credits; ?></td>
-                <td scope='row'><?php echo $ects; ?></td>
-                <td scope='row'><?php echo $grade;
-                              } ?></td>
+                  
+                    
+            <tr>
+              <td scope='row'> $category </td>
+              <td scope='row'> $code </td>
+              <td scope='row'> $name_en </td>
+              <td scope='row'> $name_tr </td>
+              <td scope='row'> $credits </td>
+              <td scope='row'> $ects </td>
+              <td scope='row'> $grade </td>
+            </tr>
 
-
-              </tr>
-
-            
-            ";
+          
+          ";
     }
-
-    echo "</tbody>
-            </table>";
   } else {
     echo "
           <div class='card mt-4'>

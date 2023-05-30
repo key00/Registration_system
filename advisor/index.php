@@ -2,7 +2,6 @@
 
 session_start();
 require("../includes/db.php");
-require("../advisor/get_student.php");
 require("../advisor/functions.php");
 ?>
 
@@ -61,7 +60,16 @@ require("../advisor/functions.php");
 
                 <div class="sidenav">
                     <ul>
-                        <li class="students content active"><i class="fa-solid fa-circle-info pe-3"></i>Students</li>
+                        <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
+                            <ul class="nav nav-pills my-4 ps-3">
+
+                                <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations</li>
+                                <li class="nav-item semester content"> <i class="fa-solid fa-location-pin pe-3"></i> Current Semester</li>
+                                <li class="nav-item transc content"> <i class="fa-solid fa-scroll pe-3"></i> Transcript</li>
+                                <li class="nav-item course content"> <i class="fa-brands fa-discourse pe-3"></i> Courses</li>
+                                <li class="nav-item transfer content"> <i class="fa-solid fa-paper-plane pe-3"></i> Transfer Courses</li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </div>
@@ -69,7 +77,7 @@ require("../advisor/functions.php");
         </div>
         <div class="main">
 
-            <div class="students dashboard active container mt-3">
+            <div class="students container mt-3">
                 <div class="search-box my-3">
                     <form action="" method="POST">
                         <input type="text" name="stdId" id="" placeholder="search Student Number">
@@ -78,57 +86,41 @@ require("../advisor/functions.php");
 
                 </div>
                 <div class="std-section mb-3">
-                    <ul class="nav nav-pills mb-4" id="myTab" role="tablist">
-
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="semester-tab" data-bs-toggle="tab" data-bs-target="#semester-tab-pane" type="button" role="tab" aria-controls="semester-tab-pane" aria-selected="false"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="transc-tab" data-bs-toggle="tab" data-bs-target="#transc-tab-pane" type="button" role="tab" aria-controls="transc-tab-pane" aria-selected="false"><i class="fa-solid fa-scroll pe-3"></i>Transcript</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="course-tab" data-bs-toggle="tab" data-bs-target="#course-tab-pane" type="button" role="tab" aria-controls="course-tab-pane" aria-selected="false"><i class="fa-brands fa-discourse pe-3"></i>Courses</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="transfer-tab" data-bs-toggle="tab" data-bs-target="#transfer-tab-pane" type="button" role="tab" aria-controls="transfer-tab-pane" aria-selected="false"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
-                            <?php get_info()
-                            ?>
-                        </div>
-
-                        <div class="tab-pane fade" id="semester-tab-pane" role="tabpanel" aria-labelledby="semester-tab" tabindex="0">
-                            <?php get_semester() ?>
-
-                        </div>
-
-                        <div class="tab-pane fade" id="transc-tab-pane" role="tabpanel" aria-labelledby="transc-tab" tabindex="0">
-                            <?php get_all_semesters() ?>
-
-                        </div>
-
-                        <div class="tab-pane fade" id="course-tab-pane" role="tabpanel" aria-labelledby="course-tab" tabindex="0">
-                            <table class="table bg-light" style="width: 50%;">
-                                <?php get_credits() ?>
-                            </table>
-                            <?php get_courses_left();
 
 
-                            ?>
+                    <div class="info dashboard active m-3">
+                        <?php get_info()
+                        ?>
+                    </div>
 
-                        </div>
-
-                        <div class="tab-pane fade" id="transfer-tab-pane" role="tabpanel" aria-labelledby="transfer-tab" tabindex="0">
-                            <?php get_transfer() ?>
-
-                        </div>
+                    <div class="semester dashboard">
+                        <?php get_semester()
+                        ?>
 
                     </div>
+
+                    <div class="transc dashboard">
+                        <?php //get_all_semesters()
+                        ?>
+
+                    </div>
+
+
+                    <div class="course dashboard">
+                        <table class="table bg-light" style="width: 50%;">
+                            <?php //get_credits()
+                            ?>
+                        </table>
+                        <?php //get_courses_left();
+                        ?>
+
+                    </div>
+
+                    <div class="transfer dashboard">
+                        <?php get_transfer() ?>
+
+                    </div>
+
 
                 </div>
 
