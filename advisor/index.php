@@ -3,6 +3,7 @@
 session_start();
 require("../includes/db.php");
 require("../advisor/get_student.php");
+require("../advisor/functions.php");
 ?>
 
 <!DOCTYPE html>
@@ -97,73 +98,33 @@ require("../advisor/get_student.php");
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
-                            <?php
-                            if (isset($_POST['search_student'])) {
-                                $student = $_POST['stdId'];
-                                $student_info = get_info($student);
-                                $fname = $student_info['firstName'];
-                                $lname = $student_info['lastName'];
-                                $dob = $student_info['date_birth'];
-                                $gender = $student_info['gender'];
-                                $stdmail = $student_info['stdEmail'];
-                                $country = $student_info['country'];
-                                $pass_num = $student_info['passportNum'];
-                                $scholarship = $student_info['scholarship'];
-                                $advisor = $student_info['advisor'];
-                                $department = $student_info['dId'];
-
-                                $get_dep = "select * from departments where dId=$department";
-                                $run_dep = mysqli_query($con, $get_dep);
-                                $row_dep = mysqli_fetch_array($run_dep);
-                                $dep_name = $row_dep['departmentName'];
-                                echo "
-                                        <div class='card'>
-                                            <div class='card-body p-4'>
-                                                <div class='row info'>
-                                                    <div class='col-5 col-md-5'>
-                                                        <p>Name: $fname</p>
-                                                        <p>Surname: $lname</p>
-                                                        <p>Date of Birth: $dob</p>
-                                                        <p>Gender: $gender</p>
-                                                        <p>Email: $stdmail</p>
-                                                    </div>
-                                                    <div class='col-5 col-md-5'>
-                                                        <p>Country of Origin: $country</p>
-                                                        <p>Passport Number: $pass_num</p>
-                                                        <p>Father's Name: Niyungeko Deo</p>
-                                                        <p>Mother's Name: Nsabimana Laetitia</p>
-                                                        <p>Tel: 05338857918</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='card mt-3'>
-                                           <div class='card-body p-4'>
-                                             <p><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</p>
-                                             <p><i class='fa-solid fa-building pe-3'></i>Department:  $dep_name </p>
-                                             <p><i class='fa-solid fa-inbox pe-3'></i>Status: Active Student</p>
-                                             <p><i class='fa-solid fa-graduation-cap pe-3'></i>Scholarship:  $scholarship %</p>
-                                             <p class='full_name'><i class='fa-solid fa-user-group pe-3'> </i>Advisor:  $advisor </p>
-                                           </div>
-                                        </div>
-                                        ";
-                            }
+                            <?php get_info()
                             ?>
                         </div>
-                        <div class="tab-pane fade show" id="semester-tab-pane" role="tabpanel" aria-labelledby="semester-tab" tabindex="0">
-                            hello5
+
+                        <div class="tab-pane fade" id="semester-tab-pane" role="tabpanel" aria-labelledby="semester-tab" tabindex="0">
+                            <?php get_semester() ?>
 
                         </div>
+
                         <div class="tab-pane fade" id="transc-tab-pane" role="tabpanel" aria-labelledby="transc-tab" tabindex="0">
-                            hello2
+                            <?php get_all_semesters() ?>
 
                         </div>
+
                         <div class="tab-pane fade" id="course-tab-pane" role="tabpanel" aria-labelledby="course-tab" tabindex="0">
-                            hello3
+                            <table class="table bg-light" style="width: 50%;">
+                                <?php get_credits() ?>
+                            </table>
+                            <?php get_courses_left();
+
+
+                            ?>
 
                         </div>
+
                         <div class="tab-pane fade" id="transfer-tab-pane" role="tabpanel" aria-labelledby="transfer-tab" tabindex="0">
-                            hello4
+                            <?php get_transfer() ?>
 
                         </div>
 

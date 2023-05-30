@@ -1,27 +1,27 @@
 <?php
-require("../includes/db.php");
+// require("../includes/db.php");
 
 
-function get_info($stdNumber)
-{
-    global $con;
+// function get_info($stdNumber)
+// {
+//     global $con;
 
-    $stdNumber = mysqli_real_escape_string($con, $stdNumber);
+//     $stdNumber = mysqli_real_escape_string($con, $stdNumber);
 
-    $get_info = "select * from students where studentId=$stdNumber";
-    $run_info = mysqli_query($con, $get_info);
+//     $get_info = "select * from students where studentId=$stdNumber";
+//     $run_info = mysqli_query($con, $get_info);
 
-    if (mysqli_num_rows($run_info) > 0) {
-        // Fetch the student information
-        $row_info = mysqli_fetch_array($run_info);
+//     if (mysqli_num_rows($run_info) > 0) {
+//         // Fetch the student information
+//         $row_info = mysqli_fetch_array($run_info);
 
-        // Return the student information
-        return $row_info;
-    } else {
-        // Return null if no student is found
-        return null;
-    }
-}
+//         // Return the student information
+//         return $row_info;
+//     } else {
+//         // Return null if no student is found
+//         return null;
+//     }
+// }
 
 // if (isset($_POST['search_student'])) {
 

@@ -138,14 +138,12 @@ tr {
   background: rgb(152, 196, 176);
 }
 
-.std-section {
+.nav-pills {
   background: #fff;
   border-radius: 10px;
-  min-height: 600px;
+  /* justify-content: space-between; */
 }
-/* .nav-pills {
-  justify-content: space-between;
-} */
+
 .nav-pills .nav-link {
   color: rgb(33, 37, 41);
   background-color: rgb(227, 238, 233);
