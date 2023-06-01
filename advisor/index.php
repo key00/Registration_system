@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+// $_SESSION['student'] = '';
 require("../includes/db.php");
 require("../advisor/functions.php");
 ?>

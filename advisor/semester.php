@@ -5,16 +5,22 @@ require("../includes/db.php");
 global $con;
 if (isset($_POST['search_student'])) {
     $student = $_POST['stdId'];
-    $_SESSION['student'] = $student;
     $stdNumber = mysqli_real_escape_string($con, $student);
-    $get_semester = "select * from semesters where studentId=$stdNumber and year='2022-2023' and period='Spring'";
+    $_SESSION['student'] = $stdNumber;
+}
+
+if (isset($_SESSION['student'])) {
+    $studentId = $_SESSION['student'];
+    $get_semester = "select * from semesters where studentId=$studentId and year='2022-2023' and period='Spring'";
     $run_semester = mysqli_query($con, $get_semester);
 
+?>
 
+    <?php
     if (mysqli_num_rows($run_semester) > 0) {
         $totalCredits = 0;
         $totalGradePoints = 0;
-?>
+    ?>
         <form method="post" action="">
 
             <table class='table table-hover bg-light table-borderless mt-3'>
@@ -98,12 +104,12 @@ if (isset($_POST['search_student'])) {
 ?>
 
 <!-- to add a new course start -->
-<div class="search-box">
-    <select name="" id="search_select">
-        <option value="" selected disabled>--Add a course--</option>
-    </select>
-    <button class="btn" type="submit" id="search_button"><i class="fa-solid fa-plus"></i></button>
-</div>
+<!-- <div class="search-box">
+        <select name="" id="search_select">
+            <option value="" selected disabled>--Add a course--</option>
+        </select>
+        <button class="btn" type="submit" id="search_button"><i class="fa-solid fa-plus"></i></button>
+    </div> -->
 
 
 <!-- to add a new course end -->
@@ -120,6 +126,7 @@ if (isset($_POST['update'])) {
         $run_delete = mysqli_query($con, $delete_course);
         if ($run_delete) {
             echo "<script> alert('Course(s) deleted')</script>";
+            echo "<script> window.open('index.php?student=$studentId','_self')</script>";
         } else echo "<script> alert('A problem occured while deleting courses(s)')</script>";
     }
 }
