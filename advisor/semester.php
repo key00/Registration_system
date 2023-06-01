@@ -1,8 +1,11 @@
+<!-- <link rel="stylesheet" href="style.css"> -->
 <?php
+
 require("../includes/db.php");
 global $con;
 if (isset($_POST['search_student'])) {
     $student = $_POST['stdId'];
+    $_SESSION['student'] = $student;
     $stdNumber = mysqli_real_escape_string($con, $student);
     $get_semester = "select * from semesters where studentId=$stdNumber and year='2022-2023' and period='Spring'";
     $run_semester = mysqli_query($con, $get_semester);
@@ -15,12 +18,14 @@ if (isset($_POST['search_student'])) {
         <form method="post" action="">
 
             <table class='table table-hover bg-light table-borderless mt-3'>
+
                 <thead>
                     <tr class='table-success'>
                         <th class='text-center table-header' colspan='9'> Spring 2022-2023</th>
                     </tr>
 
                 </thead>
+
                 <tbody class='table-group-divider'>
                     <tr class='table-secondary'>
                         <th></th>
@@ -34,9 +39,6 @@ if (isset($_POST['search_student'])) {
                         <th scope='col'>Grade</th>
                     </tr>
                     <?php
-
-
-
                     while ($row_semester = mysqli_fetch_array($run_semester)) {
 
                         $code = $row_semester['course_code'];
@@ -79,8 +81,11 @@ if (isset($_POST['search_student'])) {
 
                 </tfoot>
                 </tbody>
+
             </table>
+
         </form>
+
 <?php
     } else {
         echo "<div class='card mt-4'>
@@ -92,21 +97,31 @@ if (isset($_POST['search_student'])) {
 }
 ?>
 
-<?php
-function delete_course()
-{
-    global $con;
+<!-- to add a new course start -->
+<div class="search-box">
+    <select name="" id="search_select">
+        <option value="" selected disabled>--Add a course--</option>
+    </select>
+    <button class="btn" type="submit" id="search_button"><i class="fa-solid fa-plus"></i></button>
+</div>
 
-    if (isset($_POST['update'])) {
-        foreach ($_POST['remove'] as $remove_course) {
-            $delete_course = "delete from semesters where course_code='$remove_course'";
-            $run_delete = mysqli_query($con, $delete_course);
-            if ($run_delete) {
-                echo "<script> alert('Course(s) deleted')</script>";
-            } else echo "<script> alert('A problem occured while deleting courses(s)')</script>";
-        }
+
+<!-- to add a new course end -->
+
+<!-- to delete a course -->
+<?php
+
+global $con;
+if (isset($_POST['update'])) {
+    $student = $_SESSION['student'];
+    foreach ($_POST['remove'] as $remove_course) {
+
+        $delete_course = "DELETE from semesters where course_code='$remove_course' and studentId=$student ";
+        $run_delete = mysqli_query($con, $delete_course);
+        if ($run_delete) {
+            echo "<script> alert('Course(s) deleted')</script>";
+        } else echo "<script> alert('A problem occured while deleting courses(s)')</script>";
     }
 }
-echo @$up_course = delete_course();
 
 ?>

@@ -4,6 +4,7 @@ require("../includes/db.php");
 global $con;
 if (isset($_POST['search_student'])) {
     $student = $_POST['stdId'];
+    $_SESSION['student'] = $student;
     $stdNumber = mysqli_real_escape_string($con, $student);
     $get_dep = "select * from students where studentId=$stdNumber";
     $run_dep = mysqli_query($con, $get_dep);
@@ -78,7 +79,7 @@ if (isset($_POST['search_student'])) {
                     </tr>
                 </tfoot>
         </form>
-<?php
+    <?php
     } else {
         echo "
                     <div class='card mt-4'>
@@ -88,68 +89,68 @@ if (isset($_POST['search_student'])) {
                 </div>
                     ";
     }
-};
-?>
 
-<!-- displaying transfer courses -->
+    ?>
 
-<table class='table table-hover bg-light table-borderless mt-3'>
+    <!-- displaying transfer courses -->
 
-    <thead class='table-success'>
-        <tr>
-            <th class='text-center table-header ' colspan='7'>Transfer Courses</th>
-        </tr>
+    <table class='table table-hover bg-light table-borderless mt-3'>
 
-    </thead>
+        <thead class='table-success'>
+            <tr>
+                <th class='text-center table-header ' colspan='7'>Transfer Courses</th>
+            </tr>
 
-    <tbody class='table-group-divider'>
-        <tr class='table-secondary'>
-            <th scope='col'>Cat</th>
-            <th scope='col'>Code</th>
-            <th scope='col'>course Name(EN)</th>
-            <th scope='col'>course Name(TR)</th>
-            <th scope='col'>Credits</th>
-            <th scope='col'>ECTS</th>
-            <th scope='col'>Grade</th>
-        </tr>
-        <?php
-        $get_transfer = "select * from transfer where studentId=$stdNumber";
-        $run_transfer = mysqli_query($con, $get_transfer);
-        if (mysqli_num_rows($run_transfer) > 0) {
+        </thead>
 
-            while ($row_transfer = mysqli_fetch_array($run_transfer)) {
-                $code = $row_transfer['CourseCode'];
-                $name_en = $row_transfer['name_en'];
-                $name_tr = $row_transfer['name_tr'];
-                $credits = $row_transfer['credits'];
-                $ects = $row_transfer['ects'];
-                $category = $row_transfer['category'];
-                $grade = $row_transfer['grade'];
-        ?>
-                <tr>
-                    <td scope='row'> <?php echo $category; ?> </td>
-                    <td scope='row'> <?php echo $code; ?> </td>
-                    <td scope='row'> <?php echo $name_en; ?> </td>
-                    <td scope='row'> <?php echo $name_tr; ?> </td>
-                    <td scope='row'> <?php echo $credits; ?> </td>
-                    <td scope='row'> <?php echo $ects; ?> </td>
-                    <td scope='row'> <?php echo $grade; ?> </td>
-                </tr>
+        <tbody class='table-group-divider'>
+            <tr class='table-secondary'>
+                <th scope='col'>Cat</th>
+                <th scope='col'>Code</th>
+                <th scope='col'>course Name(EN)</th>
+                <th scope='col'>course Name(TR)</th>
+                <th scope='col'>Credits</th>
+                <th scope='col'>ECTS</th>
+                <th scope='col'>Grade</th>
+            </tr>
+            <?php
+            $get_transfer = "select * from transfer where studentId=$stdNumber";
+            $run_transfer = mysqli_query($con, $get_transfer);
+            if (mysqli_num_rows($run_transfer) > 0) {
 
+                while ($row_transfer = mysqli_fetch_array($run_transfer)) {
+                    $code = $row_transfer['CourseCode'];
+                    $name_en = $row_transfer['name_en'];
+                    $name_tr = $row_transfer['name_tr'];
+                    $credits = $row_transfer['credits'];
+                    $ects = $row_transfer['ects'];
+                    $category = $row_transfer['category'];
+                    $grade = $row_transfer['grade'];
+            ?>
+                    <tr>
+                        <td scope='row'> <?php echo $category; ?> </td>
+                        <td scope='row'> <?php echo $code; ?> </td>
+                        <td scope='row'> <?php echo $name_en; ?> </td>
+                        <td scope='row'> <?php echo $name_tr; ?> </td>
+                        <td scope='row'> <?php echo $credits; ?> </td>
+                        <td scope='row'> <?php echo $ects; ?> </td>
+                        <td scope='row'> <?php echo $grade; ?> </td>
+                    </tr>
+
+
+                <?php
+                }
+
+                ?>
 
             <?php
-            }
-
+            } else {
             ?>
-
-        <?php
-        } else {
-        ?>
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 <?php
-            echo "
+                echo "
           <div class='card mt-4'>
             <div class='card-body p-4'>
               <h5 class='text-center'>No transfer courses available</h5>
@@ -157,24 +158,24 @@ if (isset($_POST['search_student'])) {
           </div>
           
           ";
+            }
         } ?>
 
 <!-- function to add a course for a student -->
 <?php
 
 global $con;
-// global $student;
 
 if (isset($_POST['update'])) {
+
+    $student = $_SESSION['student'];
     foreach ($_POST['add'] as $add_course) {
-        $get_course = "select * from courses where course_code='$add_course'";
-        $run_course = mysqli_query($con, $get_course);
-        $row_course = mysqli_fetch_array($run_course);
-        $credits = $row_course['credits'];
-        $add = "INSERT into semesters (id, year, period,studentId, course_code, lecturer, grade, credits) VALUES ('','2022-2023','Spring','$student', '$add_course','','','$credits') ";
+
+        $add = "INSERT into semesters (id, year, period,studentId, course_code, lecturer, grade) VALUES ('','2022-2023','Spring','$student', '$add_course','','') ";
         $run_add = mysqli_query($con, $add);
         if ($run_add) {
-            echo "<script> alert('Course(s) deleted')</script>";
+            echo "<script> alert('Course(s) added')</script>";
+            echo "<script>window.open('index.php','_self')</script>";
         } else echo "<script> alert('A problem occured while adding course(s)')</script>";
     }
 }
