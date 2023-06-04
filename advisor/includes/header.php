@@ -63,7 +63,7 @@ require("../advisor/functions.php");
                         <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
                             <ul class="nav nav-pills my-4 ps-3">
 
-                                <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
+                                <li class="nav-item info content"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
                                 </li>
                                 <li class="nav-item semester content "> <i class="fa-solid fa-location-pin pe-3"></i> Current Semester
                                 </li>
