@@ -2,7 +2,7 @@
 
 session_start();
 // $_SESSION['student'] = ''; //if i add this add and delete course are not working
-require("../includes/db.php");
+require("../advisor/includes/db.php");
 require("../advisor/functions.php");
 ?>
 
@@ -47,7 +47,6 @@ require("../advisor/functions.php");
         </nav>
 
     </header>
-
     <div class="wrapper">
         <div class="aside">
             <div class="profile">
@@ -82,54 +81,3 @@ require("../advisor/functions.php");
             </div>
         </div>
         <div class="main">
-
-            <div class="students container mt-3">
-                <div class="search-box my-3">
-                    <form action="" method="POST">
-                        <input type="text" name="stdId" id="" placeholder="search Student Number">
-                        <button class="btn" type="submit" name="search_student"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
-
-                </div>
-
-                <div class="info active dashboard">
-                    <?php
-
-                    include("student_info.php");
-                    ?>
-                </div>
-
-                <div class="semester dashboard">
-                    <?php
-
-                    include("semester.php");
-                    ?>
-                </div>
-
-
-                <div class="transc dashboard">
-                    <?php
-                    include("transcript.php");
-
-                    ?>
-                </div>
-
-
-                <div class="course dashboard">
-                    <?php
-                    include("course.php");
-                    ?>
-                </div>
-
-
-            </div>
-
-
-
-        </div>
-    </div>
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-</body>
-
-</html>

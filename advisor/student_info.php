@@ -33,7 +33,7 @@ if (isset($_POST['search_student'])) {
 
 ?>
 
-
+        <a href="edit_student.php?id=$_SESSION['student']" class="btn btn-success mb-3">EDIT</a>
         <div class='card'>
             <div class='card-body p-4'>
                 <div class='row info'>
