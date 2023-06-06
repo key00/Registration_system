@@ -97,11 +97,12 @@ if (mysqli_num_rows($run_courses) > 0) {
 
 <!-- displaying transfer courses -->
 
+
 <table class='table table-hover bg-light table-borderless mt-3'>
 
     <thead class='table-success'>
         <tr>
-            <th class='text-center table-header ' colspan='7'>Transfer Courses</th>
+            <th class='text-center table-header ' colspan='8'>Transfer Courses</th>
         </tr>
 
     </thead>
@@ -115,6 +116,7 @@ if (mysqli_num_rows($run_courses) > 0) {
             <th scope='col'>Credits</th>
             <th scope='col'>ECTS</th>
             <th scope='col'>Grade</th>
+            <th scope="col"></th>
         </tr>
         <?php
         $get_transfer = "select * from transfer where studentId=$studentId";
@@ -138,6 +140,7 @@ if (mysqli_num_rows($run_courses) > 0) {
                     <td scope='row'> <?php echo $credits; ?> </td>
                     <td scope='row'> <?php echo $ects; ?> </td>
                     <td scope='row'> <?php echo $grade; ?> </td>
+                    <td scope='row'><a href="edit_transfer.php?course=<?= $code ?>&id=<?= $studentId ?>"><i class=" fa-solid fa-pen-to-square"></i></a></td>
                 </tr>
 
 
@@ -164,6 +167,7 @@ if (mysqli_num_rows($run_courses) > 0) {
         }
 ?>
 
+<a href="add_transfer.php?id=<?= $studentId ?>" class="btn btn-success p-2"><i class="fa-solid fa-plus"></i> Add transferred course</a>
 <!-- function to add a course for a student -->
 <?php
 
