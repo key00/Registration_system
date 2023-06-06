@@ -30,7 +30,7 @@ require("../advisor/functions.php");
     <header class="header fixed-top">
         <nav class="navbar navbar-expand-lg">
             <div class="navbar-brand">
-                <a href=""><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
+                <a href="../advisor/index.php"><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
             </div>
             <div class="collapse navbar-collapse px-4">
                 <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
@@ -85,7 +85,7 @@ require("../advisor/functions.php");
             <div class="students container mt-3">
                 <div class="search-box my-3">
                     <form action="" method="POST">
-                        <input type="text" name="stdId" id="" placeholder="search Student Number">
+                        <input type="text" name="stdId" id="" placeholder="search Student Number" required>
                         <button class="btn" type="submit" name="search_student"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
 

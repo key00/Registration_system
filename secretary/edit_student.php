@@ -1,6 +1,6 @@
 <?php
-require("../advisor/includes/header.php");
-require("../advisor/includes/db.php");
+require("../secretary/includes/header.php");
+require("../secretary/includes/db.php");
 
 if (isset($_GET['id'])) {
     $student = $_GET['id'];
@@ -140,5 +140,5 @@ if (isset($_POST['update_info'])) {
 ?>
 
 <?php
-require('../advisor/includes/footer.php');
+require('../secretary/includes/footer.php');
 ?>

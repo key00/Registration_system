@@ -2,7 +2,7 @@
 
 session_start();
 // $_SESSION['student'] = ''; //if i add this add and delete course are not working
-require("../advisor/includes/db.php");
+require("../includes/db.php");
 require("../advisor/functions.php");
 ?>
 
@@ -30,16 +30,16 @@ require("../advisor/functions.php");
     <header class="header fixed-top">
         <nav class="navbar navbar-expand-lg">
             <div class="navbar-brand">
-                <a href="../advisor/index.php"><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
+                <a href="../secretary/index.php"><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
             </div>
             <div class="collapse navbar-collapse px-4">
                 <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
                 <ul class="navbar-nav user">
-                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> Advisor Name </a>
+                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> Secretary Name </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
-                            <!-- <li><hr class="dropdown-divider"></li> -->
+
                         </ul>
                     </li>
                 </ul>
@@ -47,6 +47,7 @@ require("../advisor/functions.php");
         </nav>
 
     </header>
+
     <div class="wrapper">
         <div class="aside">
             <div class="profile">
@@ -55,7 +56,7 @@ require("../advisor/functions.php");
                 </div>
                 <hr />
 
-                <p class="text-center full_name"><strong>Advisor name</strong></p>
+                <p class="text-center full_name"><strong>Secretary name</strong></p>
                 <hr />
 
                 <div class="sidenav">
@@ -63,16 +64,8 @@ require("../advisor/functions.php");
                         <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
                             <ul class="nav nav-pills my-4 ps-3">
 
-                                <li class="nav-item info content"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
+                                <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
                                 </li>
-                                <li class="nav-item semester content "> <i class="fa-solid fa-location-pin pe-3"></i> Current Semester
-                                </li>
-                                <li class="nav-item transc content "> <i class="fa-solid fa-scroll pe-3"></i> Transcript
-                                </li>
-                                <li class="nav-item course content "> <i class="fa-brands fa-discourse pe-3"></i> Courses
-                                </li>
-                                <!-- <li class="nav-item transfer content "> <i class="fa-solid fa-paper-plane pe-3"></i> Transfer Courses
-                                </li> -->
                             </ul>
                         </li>
 
