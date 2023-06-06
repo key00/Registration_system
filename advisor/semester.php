@@ -11,7 +11,7 @@ if (isset($_POST['search_student'])) {
 
 if (isset($_SESSION['student'])) {
     $studentId = $_SESSION['student'];
-    $get_semester = "select * from semesters where studentId=$studentId and year='2022-2023' and period='Spring'";
+    $get_semester = "SELECT * from semesters where studentId=$studentId and year='2022-2023' and period='Spring' order by course_code ASC";
     $run_semester = mysqli_query($con, $get_semester);
 
 ?>

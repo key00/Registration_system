@@ -94,30 +94,36 @@ require("../advisor/functions.php");
 
                 <div class="info active dashboard">
                     <?php
-
-                    include("student_info.php");
+                    if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
+                        include("student_info.php");
+                    }
                     ?>
                 </div>
 
                 <div class="semester dashboard">
                     <?php
+                    if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
+                        include("semester.php");
+                    }
 
-                    include("semester.php");
                     ?>
                 </div>
 
 
                 <div class="transc dashboard">
                     <?php
-                    include("transcript.php");
-
+                    if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
+                        include("transcript.php");
+                    }
                     ?>
                 </div>
 
 
                 <div class="course dashboard">
                     <?php
-                    include("course.php");
+                    if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
+                        include("course.php");
+                    }
                     ?>
                 </div>
 
