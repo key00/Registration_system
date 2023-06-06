@@ -18,6 +18,7 @@ if (mysqli_num_rows($run_semesters) > 0) {
     while ($row_semesters = mysqli_fetch_array($run_semesters)) {
         $year = $row_semesters['year'];
         $period = $row_semesters['period'];
+
         $get_courses = "SELECT semesters.*, courses.* FROM semesters INNER JOIN courses ON semesters.course_code = courses.course_code WHERE semesters.studentId = $studentId AND semesters.year = '$year' AND semesters.period = '$period'";
         $run_courses = mysqli_query($con, $get_courses);
 
@@ -32,7 +33,7 @@ if (mysqli_num_rows($run_semesters) > 0) {
         <table class='table table-hover bg-light table-borderless mt-3'>
             <thead>
                 <tr class='table-success'>
-                    <th class='text-center table-header' colspan='9'><?php echo $period . "&nbsp" . $year; ?></th>
+                    <th class='text-center table-header' colspan='10'><?php echo $period . "&nbsp" . $year; ?></th>
                 </tr>
             </thead>
             <tbody class='table-group-divider'>
@@ -46,6 +47,7 @@ if (mysqli_num_rows($run_semesters) > 0) {
                     <th scope='col'>ECTS</th>
                     <th scope='col'>Lecturer</th>
                     <th scope='col'>Grade</th>
+                    <th scope="col"></th>
                 </tr>
 
                 <?php
@@ -92,6 +94,7 @@ if (mysqli_num_rows($run_semesters) > 0) {
                         <td scope='row'><?php echo $ects; ?></td>
                         <td scope='row'><?php echo $lecturer; ?></td>
                         <td scope='row'><?php echo $grade; ?></td>
+                        <td scope='row'> <a href="edit_transcript.php?course=<?= $code ?>&id=<?= $studentId ?>&period=<?= $period ?>&year=<?= $year ?>"><i class=" fa-solid fa-pen-to-square"></i></a></td>
                     </tr>
 
                 <?php } ?>

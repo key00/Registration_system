@@ -85,7 +85,7 @@ if (isset($_SESSION['student'])) {
                 <tfoot>
 
                     <tr>
-                        <td><button type="submit" name="update" class="btn btn-success"><span class="me-2"><i class="fa-solid fa-trash-can"></i></span>Delete Course(s)</button></td>
+                        <td colspan="3"><button type="submit" name="update" class="btn btn-success p-2"><span class="me-2"><i class="fa-solid fa-trash-can"></i></span>Delete Course(s)</button></td>
                     </tr>
 
                 </tfoot>
