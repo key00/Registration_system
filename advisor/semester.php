@@ -1,7 +1,7 @@
 <!-- <link rel="stylesheet" href="style.css"> -->
 <?php
 
-require("../includes/db.php");
+require("../advisor/includes/db.php");
 global $con;
 if (isset($_POST['search_student'])) {
     $student = $_POST['stdId'];

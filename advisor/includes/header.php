@@ -37,7 +37,7 @@ require("../advisor/functions.php");
                 <ul class="navbar-nav user">
                     <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> Advisor Name </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
+                            <li><a class="dropdown-item" href="../advisor/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
                             <!-- <li><hr class="dropdown-divider"></li> -->
                         </ul>

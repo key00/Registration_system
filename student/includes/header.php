@@ -1,20 +1,34 @@
 <?php
 
 session_start();
-require("../secretary/includes/db.php");
-?>
-<?php
-if (isset($_SESSION['secretary_id'])) {
-    $username = $_SESSION['secretary_id'];
-    $get_user = "select * from faculty where f_email='$username'";
-    $run_user = mysqli_query($con, $get_user);
-    $row_user = mysqli_fetch_array($run_user);
-    $fname = $row_user['firstName'];
-    $lname = $row_user['lastName'];
+require("../student/includes/db.php");
+require("../student/functions.php");
+global $con;
+if (isset($_SESSION['student_id'])) {
+
+    $std_num = $_SESSION['student_id'];
+    $get_student = "select * from students where studentId=$std_num";
+    $run_student = mysqli_query($con, $get_student);
+    $row_student = mysqli_fetch_array($run_student);
+    $fname = $row_student['firstName'];
+    $lname = $row_student['lastName'];
+    $dob = $row_student['date_birth'];
+    $gender = $row_student['gender'];
+    $stdmail = $row_student['stdEmail'];
+    $country = $row_student['country'];
+    $pass_num = $row_student['passportNum'];
+    $scholarship = $row_student['scholarship'];
+    $advisor = $row_student['advisor'];
+    $department = $row_student['dId'];
+
+    $get_dep = "select * from departments where dId=$department";
+    $run_dep = mysqli_query($con, $get_dep);
+    $row_dep = mysqli_fetch_array($run_dep);
+    $dep_name = $row_dep['departmentName'];
 } else echo "<script> window.open('../login.php','_self')</script>";
 
 ?>
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,16 +53,16 @@ if (isset($_SESSION['secretary_id'])) {
     <header class="header fixed-top">
         <nav class="navbar navbar-expand-lg">
             <div class="navbar-brand">
-                <a href="../secretary/index.php"><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
+                <a href="../student/index.php"><img src="../images/second_logo.png" alt="" width="250" height="50" /></a>
             </div>
             <div class="collapse navbar-collapse px-4">
                 <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
                 <ul class="navbar-nav user">
-                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?= $fname . '  ' . $lname ?> </a>
+                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?php echo $std_num ?> </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../secretary/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
+                            <li><a class="dropdown-item" href="../student/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
-
+                            <!-- <li><hr class="dropdown-divider"></li> -->
                         </ul>
                     </li>
                 </ul>
@@ -56,7 +70,6 @@ if (isset($_SESSION['secretary_id'])) {
         </nav>
 
     </header>
-
     <div class="wrapper">
         <div class="aside">
             <div class="profile">
@@ -65,19 +78,18 @@ if (isset($_SESSION['secretary_id'])) {
                 </div>
                 <hr />
 
-                <p class="text-center full_name"><strong><?= $fname . '  ' . $lname ?></strong></p>
+                <p class="text-center full_name"><strong><?php echo $fname; ?> <?php echo $lname; ?></strong></p>
+                <hr />
+                <p class="text-center"><strong><?php echo $std_num; ?></strong></p>
                 <hr />
 
                 <div class="sidenav">
                     <ul>
-                        <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
-                            <ul class="nav nav-pills my-4 ps-3">
-
-                                <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
-                                </li>
-                            </ul>
-                        </li>
-
+                        <li class="pinfo content active"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</li>
+                        <li class="curr_sem content"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</li>
+                        <li class="trans content"><i class="fa-solid fa-scroll pe-3"></i>Transcript</li>
+                        <li class="course content"><i class="fa-brands fa-discourse pe-3"></i>Courses</li>
+                        <li class="transfer content"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</li>
                     </ul>
                 </div>
             </div>

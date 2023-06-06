@@ -27,9 +27,17 @@
       <div class="col-md-6 login-right">
         <h3 class="mt-2 pt-3">University of Kyrenia</h3>
         <h5 class="pt-2 sec-title">Student Portal</h5>
+
+        <?php if (isset($_GET['error'])) {
+        ?>
+          <p class="error"> <?php echo $_GET['error'];
+                            ?></p>
+
+        <?php }
+        ?>
         <form action="login.php" method="POST" class="login-form">
-          <input type="text" name="stdNum" placeholder="Student Number" required />
-          <input type="password" name="stdPass" placeholder="Password" required />
+          <input type="text" name="username" placeholder="Username" required />
+          <input type="password" name="password" placeholder="Password" required />
 
           <button class="btn-primary" type="submit" name="login">Login</button>
         </form>
@@ -45,20 +53,38 @@
 
 <?php
 if (isset($_POST['login'])) {
-  $username = $_POST['stdNum'];
-  $password = $_POST['stdPass'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
 
-  $sql = "SELECT * FROM students WHERE studentId='$username' AND stdpass='$password'";
-  $result = mysqli_query($con, $sql);
-  $check_user = mysqli_num_rows($result);
-  if ($check_user == 0) {
-    echo "<h5 class='text-center'> username or password is wrong! </h5>";
-  } else {
+  $check_student = "SELECT * FROM students WHERE studentId='$username' AND stdpass='$password'";
+  $run_student = mysqli_query($con, $check_student);
+
+  $check_secretary = "SELECT * from faculty where f_email='$username' and issecretary=1";
+  $run_secretary = mysqli_query($con, $check_secretary);
+
+  $check_advisor = "SELECT * from faculty where f_email='$username' and isadvisor=1";
+  $run_advisor = mysqli_query($con, $check_advisor);
+
+
+  if (mysqli_num_rows($run_student) > 0) {
     session_start();
-    $_SESSION['username'] = $username;
+    $_SESSION['student_id'] = $username;
     echo "<script>alert('Login successful')</script>";
-    echo "<script>window.open('students/index.php','_self')</script>";
+    echo "<script>window.open('student/index.php','_self')</script>";
+  } elseif (mysqli_num_rows($run_secretary) > 0) {
+    session_start();
+    $_SESSION['secretary_id'] = $username;
+    echo "<script>alert('Login successful')</script>";
+    echo "<script>window.open('secretary/index.php','_self')</script>";
+  } elseif (mysqli_num_rows($run_advisor) > 0) {
+    session_start();
+    $_SESSION['advisor_id'] = $username;
+    echo "<script>alert('Login successful')</script>";
+    echo "<script>window.open('advisor/index.php','_self')</script>";
+  } else {
+    header("Location: login.php?error=Incorrect password");
+    exit();
   }
 }
 ?>

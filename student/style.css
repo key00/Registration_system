@@ -112,4 +112,13 @@ tr {
   display: flex;
   justify-content: space-around;
 }
+
+.changePass {
+  width: 70%;
+  margin: auto auto;
+}
+
+button.btn-pass {
+  background-color: rgb(209, 231, 221) !important;
+}
 /* index pages styles end */

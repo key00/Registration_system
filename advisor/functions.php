@@ -1,5 +1,5 @@
 <?php
-require("../includes/db.php");
+require("../advisor/includes/db.php");
 
 
 function get_info()

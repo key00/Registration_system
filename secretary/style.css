@@ -5,10 +5,10 @@
 /* index pages styles start */
 .wrapper {
   min-height: 100vh;
-  margin-top: 75px;
+  margin-top: 50px;
 }
 .header {
-  background-color: #56960d;
+  background-color: #bb7b03;
 }
 .navbar-collapse {
   justify-content: space-between;
@@ -119,7 +119,7 @@ tr {
   position: relative;
   height: 50px;
   width: 50px;
-  background: rgb(209, 231, 221);
+  background: rgb(227, 238, 233);
   border-radius: 4px;
   line-height: 50px;
   text-align: center;
@@ -128,7 +128,7 @@ tr {
   transition: all 0.4 ease;
 }
 button.refresh {
-  background: rgb(209, 231, 221);
+  background: rgb(227, 238, 233);
   color: #fff;
   height: 50px;
   font-size: 20px;
