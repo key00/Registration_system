@@ -72,8 +72,7 @@ require("../advisor/functions.php");
                                 </li>
                                 <li class="nav-item course content "> <i class="fa-brands fa-discourse pe-3"></i> Courses
                                 </li>
-                                <!-- <li class="nav-item transfer content "> <i class="fa-solid fa-paper-plane pe-3"></i> Transfer Courses
-                                </li> -->
+
                             </ul>
                         </li>
 

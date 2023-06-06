@@ -27,7 +27,7 @@ if (isset($_SESSION['student'])) {
 
                 <thead>
                     <tr class='table-success'>
-                        <th class='text-center table-header' colspan='9'> Spring 2022-2023</th>
+                        <th class='text-center table-header' colspan='10'> Spring 2022-2023</th>
                     </tr>
 
                 </thead>
@@ -43,6 +43,7 @@ if (isset($_SESSION['student'])) {
                         <th scope='col'>ECTS</th>
                         <th scope='col'>Lecturer</th>
                         <th scope='col'>Grade</th>
+                        <th scope="col"></th>
                     </tr>
                     <?php
                     while ($row_semester = mysqli_fetch_array($run_semester)) {
@@ -73,6 +74,8 @@ if (isset($_SESSION['student'])) {
                             <td scope='row'><?php echo $ects; ?></td>
                             <td scope='row'><?php echo $lecturer; ?></td>
                             <td scope='row'><?php echo $grade; ?></td>
+                            <td scope='row'> <a href="edit_semester.php?course=<?= $code ?>&id=<?= $studentId ?>"><i class=" fa-solid fa-pen-to-square"></i></a></td>
+
                         </tr>
 
                     <?php

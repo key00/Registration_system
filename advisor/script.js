@@ -37,11 +37,11 @@
     });
   });
 
-  $.ajax({
-    url: "add_course.php",
-    type: "GET",
-    success: function (response) {
-      $("#search_select").append(response);
-    },
-  });
+  // $.ajax({
+  //   url: "add_course.php",
+  //   type: "GET",
+  //   success: function (response) {
+  //     $("#search_select").append(response);
+  //   },
+  // });
 })(jQuery);
