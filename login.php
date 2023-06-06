@@ -53,17 +53,25 @@
 
 <?php
 if (isset($_POST['login'])) {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
 
+  function test_input($data)
+  {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
+  $username = test_input($_POST['username']);
+  $password = test_input($_POST['password']);
 
   $check_student = "SELECT * FROM students WHERE studentId='$username' AND stdpass='$password'";
   $run_student = mysqli_query($con, $check_student);
 
-  $check_secretary = "SELECT * from faculty where f_email='$username' and issecretary=1";
+  $check_secretary = "SELECT * from faculty where f_email='$username' and password='$password' and issecretary=1";
   $run_secretary = mysqli_query($con, $check_secretary);
 
-  $check_advisor = "SELECT * from faculty where f_email='$username' and isadvisor=1";
+  $check_advisor = "SELECT * from faculty where f_email='$username' and password='$password' and isadvisor=1";
   $run_advisor = mysqli_query($con, $check_advisor);
 
 
