@@ -46,7 +46,7 @@ if (isset($_SESSION['secretary_id'])) {
                 <ul class="navbar-nav user">
                     <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?= $fname . '  ' . $lname ?> </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../secretary/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
+                            <!-- <li><a class="dropdown-item" href="../secretary/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li> -->
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
 
                         </ul>

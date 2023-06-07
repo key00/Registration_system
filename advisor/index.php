@@ -49,7 +49,7 @@ if (isset($_SESSION['advisor_id'])) {
                 <ul class="navbar-nav user">
                     <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?= $fname . '  ' . $lname ?> </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../advisor/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li>
+                            <!-- <li><a class="dropdown-item" href="../advisor/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li> -->
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
                             <!-- <li><hr class="dropdown-divider"></li> -->
                         </ul>
@@ -145,7 +145,7 @@ if (isset($_SESSION['advisor_id'])) {
 
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 

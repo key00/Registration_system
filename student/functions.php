@@ -9,7 +9,7 @@ function getCourses()
 {
 
   global $db;
-  $student = $_SESSION['username'];
+  $student = $_SESSION['student_id'];
   $get_dep = "select * from students where studentId=$student";
   $run_dep = mysqli_query($db, $get_dep);
   $row_dep = mysqli_fetch_array($run_dep);
@@ -47,7 +47,7 @@ function getSemester()
 {
 
   global $db;
-  $student = $_SESSION['username'];
+  $student = $_SESSION['student_id'];
   $get_semester = "select * from semesters where studentId=$student and year='2022-2023' and period='Spring'";
   $run_semester = mysqli_query($db, $get_semester);
 
@@ -139,7 +139,7 @@ function getSemester()
 function getTransc()
 {
   global $db;
-  $studentId = $_SESSION['username'];
+  $studentId = $_SESSION['student_id'];
   $get_transc = "select * from semesters where studentId=$studentId";
   $run_transc = mysqli_query($db, $get_transc);
 
@@ -197,7 +197,7 @@ function calculateGradePoints($grade, $credits)
 function get_all_semesters()
 {
   global $db;
-  $student = $_SESSION['username'];
+  $student = $_SESSION['student_id'];
   $get_semesters = "SELECT DISTINCT year, period FROM semesters WHERE studentId=$student AND year BETWEEN '2019-2020' AND '2022-2023' AND period IN ('Fall', 'Spring') ORDER BY year, period ASC";
   $run_semesters = mysqli_query($db, $get_semesters);
 
@@ -311,7 +311,7 @@ function get_all_semesters()
 function get_courses_left()
 {
   global $db;
-  $student = $_SESSION['username'];
+  $student = $_SESSION['student_id'];
   $get_dep = "select * from students where studentId=$student";
   $run_dep = mysqli_query($db, $get_dep);
   $row_dep = mysqli_fetch_array($run_dep);
@@ -378,7 +378,7 @@ function get_courses_left()
 function get_credits()
 {
   global $db;
-  $student = $_SESSION['username'];
+  $student = $_SESSION['student_id'];
   $credits = 0;
   $get_dep = "select * from students where studentId=$student";
   $run_dep = mysqli_query($db, $get_dep);
@@ -416,7 +416,7 @@ function get_credits()
 function get_transfer()
 {
   global $con;
-  $student = $_SESSION['username'];
+  $student = $_SESSION['student_id'];
   $get_transfer = "select * from transfer where studentId=$student";
   $run_transfer = mysqli_query($con, $get_transfer);
 
