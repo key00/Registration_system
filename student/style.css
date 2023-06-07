@@ -16,9 +16,12 @@
 .navbar-collapse {
   justify-content: space-between;
 }
-
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
 a.user.nav-link {
-  color: #fff;
+  color: #fff !important;
 }
 
 .navbar-nav.user:hover {

@@ -85,11 +85,31 @@ if (isset($_SESSION['student_id'])) {
 
                 <div class="sidenav">
                     <ul>
-                        <li class="pinfo content active"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</li>
-                        <li class="curr_sem content"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</li>
-                        <li class="trans content"><i class="fa-solid fa-scroll pe-3"></i>Transcript</li>
-                        <li class="course content"><i class="fa-brands fa-discourse pe-3"></i>Courses</li>
-                        <li class="transfer content"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</li>
+                        <a href="index.php?pinfo">
+                            <li class="pinfo content <?php if (isset($_GET['pinfo'])) {
+                                                            echo "active";
+                                                        } ?>"><i class="fa-solid fa-circle-info pe-3"></i>Personal Informations</li>
+                        </a>
+                        <a href="index.php?semester">
+                            <li class="curr_sem content <?php if (isset($_GET['semester'])) {
+                                                            echo "active";
+                                                        } ?>"><i class="fa-solid fa-location-pin pe-3"></i>Current Semester</li>
+                        </a>
+                        <a href="index.php?transcript">
+                            <li class="trans content <?php if (isset($_GET['transcript'])) {
+                                                            echo "active";
+                                                        } ?>"><i class="fa-solid fa-scroll pe-3"></i>Transcript</li>
+                        </a>
+                        <a href="index.php?courses">
+                            <li class="course content <?php if (isset($_GET['courses'])) {
+                                                            echo "active";
+                                                        } ?>"><i class="fa-brands fa-discourse pe-3"></i>Courses</li>
+                        </a>
+                        <a href="index.php?transfer">
+                            <li class="transfer content <?php if (isset($_GET['transfer'])) {
+                                                            echo "active";
+                                                        } ?>"><i class="fa-solid fa-paper-plane pe-3"></i>Transfer Courses</li>
+                        </a>
                     </ul>
                 </div>
             </div>
