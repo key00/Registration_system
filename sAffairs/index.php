@@ -1,12 +1,13 @@
 <?php
-require("../secretary/includes/header.php");
-require("../secretary/includes/db.php"); ?>
+require("../sAffairs/includes/header.php");
+require("../sAffairs/includes/db.php"); ?>
 
 
 <div class="search-box m-3">
     <!-- <form method="post">
         <button class="btn refresh" type="submit" name="refresh"> <i class="fa-solid fa-rotate me-3"></i>REFRESH</button>
     </form> -->
+    <a href="add_student.php" class="btn add"><i class="fa-solid fa-plus"></i> Add New Student</a>
     <form action="" method="POST">
         <input type="text" name="stdId" id="" placeholder="search Student Number" required>
         <button class="btn" type="submit" name="search_student"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -16,21 +17,22 @@ require("../secretary/includes/db.php"); ?>
 
 </div>
 
-<div class="container info dashboard active my-3 pt-3">
+<div class="container dashboard active mt-3 pt-3">
     <?php if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
         include("student_info.php");
     }
     ?>
-
 </div>
-<div class="container semester dashboard my-3 pt-3">
-    <?php if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
-        include("semester.php");
-    }
+<div class="container dashboard active mt-3 pt-3">
+
+    <?php
+    //if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
+    //  include("student_info.php");
+    // }
     ?>
 </div>
 <?php
-require('../secretary/includes/footer.php');
+require('../sAffairs/includes/footer.php');
 ?>
 
 <?php

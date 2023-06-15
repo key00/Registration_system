@@ -192,3 +192,16 @@ a.btn.add {
   color: rgb(188, 226, 209);
   font-weight: 800;
 }
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+button.form-button {
+  line-height: normal;
+  height: 3.125rem;
+  padding: 5px !important;
+  border-radius: 8px !important;
+}

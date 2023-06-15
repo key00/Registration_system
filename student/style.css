@@ -125,3 +125,8 @@ button.btn-pass {
   background-color: rgb(209, 231, 221) !important;
 }
 /* index pages styles end */
+
+.card-title {
+  color: rgb(188, 226, 209);
+  font-weight: 800;
+}

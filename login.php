@@ -26,7 +26,7 @@
       </div>
       <div class="col-md-6 login-right">
         <h3 class="mt-2 pt-3">University of Kyrenia</h3>
-        <h5 class="pt-2 sec-title">Student Portal</h5>
+        <h5 class="pt-2 sec-title">Registration Portal</h5>
 
         <?php if (isset($_GET['error'])) {
         ?>
@@ -91,7 +91,7 @@ if (isset($_POST['login'])) {
     echo "<script>alert('Login successful')</script>";
     echo "<script>window.open('advisor/index.php','_self')</script>";
   } else {
-    header("Location: login.php?error=Incorrect password");
+    header("Location: login.php?error=Incorrect Username or Password");
     exit();
   }
 }

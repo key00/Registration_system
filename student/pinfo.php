@@ -1,5 +1,6 @@
 <div class="card">
     <div class="card-body p-4">
+        <h3 class="text-center card-title pb-4 mb-3">PERSONAL INFORMATIONS</h3>
         <div class="row info">
             <div class="col-5 col-md-5">
                 <p>Name: <?php echo $fname ?></p>
@@ -23,7 +24,9 @@
 </div>
 
 <div class="card mt-3">
+
     <div class="card-body p-4">
+        <h3 class="text-center card-title pb-4 mb-3">ACADEMIC INFORMATIONS</h3>
         <p><i class="fa-solid fa-building-columns pe-3"></i>Faculty: Engineering</p>
         <p><i class="fa-solid fa-building pe-3"></i>Department: <?php echo $dep_name ?></p>
         <p><i class="fa-solid fa-inbox pe-3"></i>Status: Active Student</p>

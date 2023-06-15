@@ -177,3 +177,8 @@ i.fa-pen-to-square {
   width: 25px;
   height: 25px;
 }
+
+.card-title {
+  color: rgb(188, 226, 209);
+  font-weight: 800;
+}
