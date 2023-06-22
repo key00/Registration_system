@@ -4,14 +4,14 @@ session_start();
 require("../secretary/includes/db.php");
 ?>
 <?php
-if (isset($_SESSION['secretary_id'])) {
-    $username = $_SESSION['secretary_id'];
-    $get_user = "select * from faculty where f_email='$username'";
-    $run_user = mysqli_query($con, $get_user);
-    $row_user = mysqli_fetch_array($run_user);
-    $fname = $row_user['firstName'];
-    $lname = $row_user['lastName'];
-} else echo "<script> window.open('../login.php','_self')</script>";
+// if (isset($_SESSION['secretary_id'])) {
+//     $username = $_SESSION['secretary_id'];
+//     $get_user = "select * from faculty where f_email='$username'";
+//     $run_user = mysqli_query($con, $get_user);
+//     $row_user = mysqli_fetch_array($run_user);
+//     $fname = $row_user['firstName'];
+//     $lname = $row_user['lastName'];
+// } else echo "<script> window.open('../login.php','_self')</script>";
 
 ?>
 ?>
@@ -44,7 +44,7 @@ if (isset($_SESSION['secretary_id'])) {
             <div class="collapse navbar-collapse px-4">
                 <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
                 <ul class="navbar-nav user">
-                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> <?= $fname . '  ' . $lname ?> </a>
+                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> Lecturer </a>
                         <ul class="dropdown-menu">
                             <!-- <li><a class="dropdown-item" href="../secretary/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li> -->
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
@@ -65,22 +65,19 @@ if (isset($_SESSION['secretary_id'])) {
                 </div>
                 <hr />
 
-                <p class="text-center full_name"><strong><?= $fname . '  ' . $lname ?></strong></p>
+                <p class="text-center full_name"><strong>Lecturer</strong></p>
                 <hr />
 
                 <div class="sidenav">
-                    <ul>
-                        <li class="students"><a href="../secretary/index.php"><i class="fa-solid fa-user pe-3"></i>Students</a>
-                            <ul class="nav nav-pills my-4 ps-3">
 
-                                <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations
-                                </li>
-                                <li class="nav-item semester content "> <i class="fa-solid fa-circle-info pe-3"></i> Current Semester
-                                </li>
-                            </ul>
-                        </li>
+                    <ul class="nav nav-pills my-4 ps-3">
 
+                        <a href="index.php">
+                            <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> My Courses
+                            </li>
+                        </a>
                     </ul>
+
                 </div>
             </div>
         </div>

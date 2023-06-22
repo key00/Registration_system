@@ -17,14 +17,14 @@ require("../sAffairs/includes/db.php"); ?>
 
 </div>
 
-<div class="container dashboard active mt-3 pt-3">
+<div class="container info dashboard active mt-3 pt-3">
     <?php if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
         include("student_info.php");
     }
     ?>
 </div>
-<div class="container dashboard active mt-3 pt-3">
-
+<div class="container payment dashboard active mt-3 pt-3">
+    <!-- for payments -->
     <?php
     //if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
     //  include("student_info.php");

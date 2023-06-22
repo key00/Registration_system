@@ -1,0 +1,233 @@
+* {
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+}
+/* index pages styles start */
+.wrapper {
+  min-height: 100vh;
+  margin-top: 50px;
+}
+.header {
+  background-color: #187c3f;
+}
+.navbar-collapse {
+  justify-content: space-between;
+}
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+a.user.nav-link {
+  color: #fff !important;
+}
+
+.navbar-nav.user:hover {
+  background-color: rgba(255, 249, 241, 0.253);
+  border-radius: 8px;
+}
+/* ul.left {
+    margin-left: 60rem;
+  } */
+.sidenav ul li a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.row.info div {
+  margin: 0 auto;
+}
+.sidenav ul li {
+  list-style: none;
+  height: 50px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.wrapper {
+  display: flex;
+}
+.aside {
+  position: fixed;
+  width: 300px;
+}
+.main {
+  margin-left: 300px;
+  flex-grow: 1;
+  overflow-y: auto;
+  background: url("../images/bg1_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile {
+  padding: 20px;
+}
+
+.user-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.sidebar-hide {
+  display: none;
+}
+
+table,
+table thead {
+  border-radius: 10px;
+}
+
+tr {
+  min-height: 70px;
+}
+.table-header {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.dashboard {
+  display: none;
+}
+.dashboard.active {
+  display: block;
+}
+
+.full_name {
+  text-transform: uppercase;
+}
+/* index pages styles end */
+
+.search-box {
+  height: 50px;
+  /* max-width: 800px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-box form input,
+.search-box select#search_select {
+  outline: none;
+  background: #fff;
+  border: 2px solid #efeef1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+  height: 50px;
+}
+.search-box i.fa-magnifying-glass {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  background: rgb(227, 238, 233);
+  border-radius: 4px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+button.refresh {
+  background: rgb(227, 238, 233);
+  color: #fff;
+  height: 50px;
+  font-size: 20px;
+}
+button.refresh:hover {
+  background: rgb(209, 226, 219);
+  color: #fff;
+  height: 50px;
+}
+
+.search-box i.fa-magnifying-glass:hover {
+  background: rgb(152, 196, 176);
+}
+
+ul.nav-pills li.nav-item {
+  background: #fff;
+  border-radius: 10px;
+  /* justify-content: space-between; */
+}
+
+ul.nav-pills li.nav-item {
+  color: rgb(33, 37, 41);
+  /* line-height: 50px; */
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+}
+
+ul.nav-pills li.nav-item.active {
+  color: rgb(33, 37, 41) !important;
+  background-color: rgb(209, 231, 221) !important;
+}
+ul.nav-pills li.nav-item:hover {
+  background-color: rgb(227, 238, 233) !important;
+  color: rgb(33, 37, 41) !important;
+  border-radius: 8px;
+}
+
+.students {
+  margin: 20px;
+  padding-left: 20px;
+}
+
+i.fa-pen-to-square {
+  border-radius: 4px;
+  text-align: center;
+  color: rgb(152, 196, 176);
+  font-size: 18px;
+  width: 25px;
+  height: 25px;
+}
+
+a.btn.add {
+  background: rgb(209, 231, 221);
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.card-title {
+  color: rgb(188, 226, 209);
+  font-weight: 800;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+button.form-button {
+  line-height: normal;
+  height: 3.125rem;
+  padding: 5px !important;
+  border-radius: 8px !important;
+}
+
+.course-card {
+  min-height: 60vh;
+}
+
+.course-card table tr {
+  height: 60px;
+}
+
+.course-list {
+  list-style: none;
+}
+
+ul.course-list a li {
+  min-height: 40px;
+  width: 100%;
+  padding: 10px;
+}
+
+ul.course-list a:hover li {
+  background-color: #dddddd;
+  border-radius: 10px;
+}

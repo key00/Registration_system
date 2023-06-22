@@ -27,8 +27,8 @@ function calculateGradePoints($grade, $credits)
 
 
 global $con;
-if (isset($_POST['search_student'])) {
-    $student = $_POST['stdId'];
+if (isset($_GET['search_student'])) {
+    $student = $_GET['student'];
     $stdNumber = mysqli_real_escape_string($con, $student);
     $_SESSION['student'] = $stdNumber;
 }
