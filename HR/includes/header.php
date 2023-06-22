@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require("../sAffairs/includes/db.php");
+require("../HR/includes/db.php");
 ?>
 <?php
 // if (isset($_SESSION['secretary_id'])) {
@@ -44,7 +44,7 @@ require("../sAffairs/includes/db.php");
             <div class="collapse navbar-collapse px-4">
                 <ul class="navbar-nav"><i class="fa-solid fa-bars sidebarBtn" style="color: #fff;"></i></ul>
                 <ul class="navbar-nav user">
-                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> Student Affairs </a>
+                    <li class="nav-item dropdown"><a class="user nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user me-2"></i> Human Resources </a>
                         <ul class="dropdown-menu">
                             <!-- <li><a class="dropdown-item" href="../secretary/change_password.php"><i class="fa-solid fa-key pe-2"></i>Change password</a></li> -->
                             <li><a class="dropdown-item" href="../logout.php"> <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>Logout</a></li>
@@ -65,17 +65,17 @@ require("../sAffairs/includes/db.php");
                 </div>
                 <hr />
 
-                <p class="text-center full_name"><strong>Student Affairs</strong></p>
+                <p class="text-center full_name"><strong>Human Resources</strong></p>
                 <hr />
 
                 <div class="sidenav">
                     <ul>
-                        <li class="students"><a href="../sAffairs/index.php"><i class="fa-solid fa-user pe-3"></i>Students</a>
+                        <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
                             <ul class="nav nav-pills my-4 ps-3">
 
                                 <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Informations
                                 </li>
-                                <li class="nav-item payment content"> <i class="fa-solid fa-credit-card pe-3"></i> Payments
+                                <li class="nav-item info content"> <i class="fa-solid fa-credit-card pe-3"></i> Payments
                                 </li>
                             </ul>
                         </li>

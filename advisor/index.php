@@ -9,7 +9,7 @@ require("../advisor/functions.php");
 <?php
 if (isset($_SESSION['advisor_id'])) {
     $username = $_SESSION['advisor_id'];
-    $get_user = "select * from faculty where f_email='$username'";
+    $get_user = "select * from academic where f_email='$username'";
     $run_user = mysqli_query($con, $get_user);
     $row_user = mysqli_fetch_array($run_user);
     $fname = $row_user['firstName'];

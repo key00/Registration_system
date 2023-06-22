@@ -68,11 +68,14 @@ if (isset($_POST['login'])) {
   $check_student = "SELECT * FROM students WHERE studentId='$username' AND stdpass='$password'";
   $run_student = mysqli_query($con, $check_student);
 
-  $check_secretary = "SELECT * from faculty where f_email='$username' and password='$password' and issecretary=1";
+  $check_secretary = "SELECT * from academic where f_email='$username' and password='$password' and issecretary=1";
   $run_secretary = mysqli_query($con, $check_secretary);
 
-  $check_advisor = "SELECT * from faculty where f_email='$username' and password='$password' and isadvisor=1";
+  $check_advisor = "SELECT * from academic where f_email='$username' and password='$password' and isadvisor=1";
   $run_advisor = mysqli_query($con, $check_advisor);
+
+  $check_lecturer = "SELECT * from academic where f_email='$username' and password='$password' and islecturer=1";
+  $run_lecturer = mysqli_query($con, $check_lecturer);
 
 
   if (mysqli_num_rows($run_student) > 0) {
@@ -85,12 +88,23 @@ if (isset($_POST['login'])) {
     $_SESSION['secretary_id'] = $username;
     echo "<script>alert('Login successful')</script>";
     echo "<script>window.open('secretary/index.php','_self')</script>";
-  } elseif (mysqli_num_rows($run_advisor) > 0) {
-    session_start();
-    $_SESSION['advisor_id'] = $username;
-    echo "<script>alert('Login successful')</script>";
-    echo "<script>window.open('advisor/index.php','_self')</script>";
-  } else {
+  } elseif (mysqli_num_rows($run_advisor) > 0 and mysqli_num_rows($run_lecturer) > 0) {
+
+    echo "<script>window.open('roles.php?user=$username','_self')</script>";
+  }
+  // elseif (mysqli_num_rows($run_advisor) > 0) {
+  //   session_start();
+  //   $_SESSION['advisor_id'] = $username;
+  //   echo "<script>alert('Login successful')</script>";
+  //   echo "<script>window.open('advisor/index.php','_self')</script>";
+  // }
+  // elseif (mysqli_num_rows($run_lecturer) > 0) {
+  //   session_start();
+  //   $_SESSION['lecturer_id'] = $username;
+  //   echo "<script>alert('Login successful')</script>";
+  //   echo "<script>window.open('lecturer/index.php','_self')</script>";
+  // } 
+  else {
     header("Location: login.php?error=Incorrect Username or Password");
     exit();
   }
