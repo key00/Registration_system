@@ -53,7 +53,9 @@ if (isset($_GET['user'])) {
 <?php
 } else {
     echo "<script>window.open('login.php','_self')</script>";
-}
+} ?>
+
+<?php
 if (isset($_POST['proceed'])) {
 
     $role = $_POST['role'];
@@ -70,8 +72,6 @@ if (isset($_POST['proceed'])) {
         echo $_SESSION['lecturer_id'];
         echo "<script>alert('Login successful')</script>";
         echo "<script>window.open('lecturer/index.php','_self')</script>";
-    } else {
-        echo "sth is wrong";
     }
 }
 ?>
