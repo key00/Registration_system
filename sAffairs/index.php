@@ -17,13 +17,13 @@ require("../sAffairs/includes/db.php"); ?>
 
 </div>
 
-<div class="container info dashboard active mt-3 pt-3">
+<div class="container info dashboard active my-3 pt-3">
     <?php if (isset($_GET['student'])) {
         include("student_info.php");
     }
     ?>
 </div>
-<div class="container payment dashboard mt-3 pt-3">
+<div class="container payment dashboard my-3 pt-3">
     <!-- for payments -->
     <?php
     //if (isset($_GET['search_student'])) {

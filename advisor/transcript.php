@@ -61,7 +61,15 @@ if (mysqli_num_rows($run_semesters) > 0) {
                     $name_tr = $row_course['courseName_tr'];
                     $credits = $row_course['credits'];
                     $ects = $row_course['ects'];
-                    $lecturer = $row_course['lecturer'];
+                    $lecturerid = $row_course['lecturer'];
+
+                    if (!is_null($lecturerid) and $lecturerid != 0) {
+                        $get_lecturer = "select * from academic where id='$lecturerid' and islecturer=1";
+                        $run_lecturer = mysqli_query($con, $get_lecturer);
+                        $row_lecturer = mysqli_fetch_array($run_lecturer);
+                        $lecturer = $row_lecturer['firstName'] . " " . $row_lecturer['lastName'];
+                    }
+
                     $grade = $row_course['grade'];
 
 
@@ -92,7 +100,7 @@ if (mysqli_num_rows($run_semesters) > 0) {
                         <td scope='row'><?php echo $name_tr; ?></td>
                         <td scope='row'><?php echo $credits; ?></td>
                         <td scope='row'><?php echo $ects; ?></td>
-                        <td scope='row'><?php echo $lecturer; ?></td>
+                        <td scope='row'><?php if (!is_null($lecturerid) and $lecturerid != 0) echo $lecturer; ?></td>
                         <td scope='row'><?php echo $grade; ?></td>
                         <td scope='row'> <a href="edit_transcript.php?course=<?= $code ?>&id=<?= $studentId ?>&period=<?= $period ?>&year=<?= $year ?>"><i class=" fa-solid fa-pen-to-square"></i></a></td>
                     </tr>

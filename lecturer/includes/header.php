@@ -11,6 +11,8 @@ if (isset($_SESSION['lecturer_id'])) {
     $row_user = mysqli_fetch_array($run_user);
     $fname = $row_user['firstName'];
     $lname = $row_user['lastName'];
+    $_SESSION['fname'] = $row_user['firstName'];
+    $_SESSION['lname'] = $row_user['lastName'];
 } else echo "<script> window.open('../login.php','_self')</script>";
 
 ?>

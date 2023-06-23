@@ -23,12 +23,17 @@ if (mysqli_num_rows($run_info) > 0) {
     $country = $student_info['country'];
     $pass_num = $student_info['passportNum'];
     $scholarship = $student_info['scholarship'];
-    $advisor = $student_info['advisor'];
+    $advisorid = $student_info['advisor'];
     $department = $student_info['dId'];
     $phone = $student_info['phone'];
     $mother = $student_info['mother'];
     $father = $student_info['father'];
     $status = $student_info['status'];
+
+    $get_advisor = "select * from academic where id='$advisorid' and isadvisor=1";
+    $run_advisor = mysqli_query($con, $get_advisor);
+    $row_advisor = mysqli_fetch_array($run_advisor);
+    $advisor = $row_advisor['firstName'] . " " . $row_advisor['lastName'];
 
     $get_dep = "select * from departments where dId=$department";
     $run_dep = mysqli_query($con, $get_dep);

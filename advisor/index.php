@@ -73,7 +73,7 @@ if (isset($_SESSION['advisor_id'])) {
 
                 <div class="sidenav">
                     <ul>
-                        <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
+                        <li class="students"><a href="../advisor/index.php"><i class="fa-solid fa-user pe-3"></i>Students</a>
                             <ul class="nav nav-pills my-4 ps-3">
 
                                 <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Personal Informations

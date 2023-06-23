@@ -51,14 +51,13 @@ require("../sAffairs/includes/db.php");
                     <div class='row'>
                         <div class='col-5 col-md-5'>
                             <p><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</p>
-                            <label class="form-label"><i class='fa-solid fa-building pe-3'></i>Department: </label>
-                            <select class="form-select" name="department" required>
+                            <select class="form-select" name="faculty" id="facultySelect">
                                 <option value="" disabled selected>--Select--</option>
-                                <option value="1">Computer Engineering</option>
-                                <option value="2">Civil Engineering</option>
-                                <option value="5">Electrical and Electronics Engineering</option>
-                                <option value="6">Software Engineering</option>
-                                <option value="7">Mechanical Engineering</option>
+                            </select>
+                            <label class="form-label"><i class='fa-solid fa-building pe-3'></i>Department: </label>
+                            <select class="form-select" name="department" id="departmentSelect" required>
+                                <option value="" disabled selected>--Select a faculty first--</option>
+
 
                             </select>
                             <label class="form-label"><i class='fa-solid fa-inbox pe-3'></i>Status:</label>
@@ -106,12 +105,22 @@ if (isset($_POST['add_student'])) {
     $phone_num = $_POST['phone_num'];
 
     $department = $_POST['department'];
+    $faculty = $_POST['faculty'];
+
+    $get_dep_id = "select * from departments where departmentName='$department'";
+    $run_dep_id = mysqli_query($con, $get_dep_id);
+    $row_dep_id = mysqli_fetch_array($run_dep_id);
+    $dep_id = $row_dep_id['dId'];
+
+    $get_faculty_id = "select * from faculties where faculty_name='$faculty'";
+    $run_faculty_id = mysqli_query($con, $get_faculty_id);
+    $row_faculty_id = mysqli_fetch_array($run_faculty_id);
+    $faculty_id = $row_faculty_id['id'];
+
     $status = $_POST['status'];
     $scholarship = $_POST['scholarship'];
-    $advisor = $_POST['advisor'];
-
-    $add = "insert into students (studentId, firstName, lastName, gender,date_birth,stdEmail,stdpass,scholarship,advisor,registration_date,country,passportNum,mother,father,phone,status,dId) 
-                           values('','$fname' , '$lname', '$gender' , '$date'  , '$std_email','password' , '$scholarship' , '$advisor',NOW(), '$country' , '$passport_num' ,'$mother','$father','$phone_num' , '$status' , '$department')";
+    $add = "insert into students (studentId, firstName, lastName, gender,date_birth,stdEmail,stdpass,scholarship,advisor,registration_date,country,passportNum,mother,father,phone,status,dId,faculty) 
+                           values('','$fname' , '$lname', '$gender' , '$date'  , '$std_email','password' , '$scholarship' , NULL ,NOW(), '$country' , '$passport_num' ,'$mother','$father','$phone_num' , '$status' , '$dep_id','$faculty_id')";
     $run_add = mysqli_query($con, $add);
     if ($run_add) {
         echo "<script>alert('Student Added')</script>";

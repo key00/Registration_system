@@ -24,4 +24,21 @@
       }
     });
   });
+
+  fetch("get_advisor.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const advisorSelect = document.getElementById("advisorSelect");
+
+      // Populate the <select> options
+      data.forEach((advisor) => {
+        const option = document.createElement("option");
+        option.value = advisor.id;
+        option.text = advisor.firstName + " " + advisor.lastName;
+        advisorSelect.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 })(jQuery);

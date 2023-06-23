@@ -49,7 +49,15 @@ if (isset($_SESSION['student'])) {
                     while ($row_semester = mysqli_fetch_array($run_semester)) {
 
                         $code = $row_semester['course_code'];
-                        $lecturer = $row_semester['lecturer'];
+                        $lecturerid = $row_semester['lecturer'];
+
+                        if (!is_null($lecturerid) and $lecturerid != 0) {
+                            $get_lecturer = "select * from academic where id='$lecturerid' and islecturer=1";
+                            $run_lecturer = mysqli_query($con, $get_lecturer);
+                            $row_lecturer = mysqli_fetch_array($run_lecturer);
+                            $lecturer = $row_lecturer['firstName'] . " " . $row_lecturer['lastName'];
+                        }
+
                         $grade = $row_semester['grade'];
                         $get_courses = "select * from courses where course_code='$code'";
                         $run_courses = mysqli_query($con, $get_courses);
@@ -72,7 +80,7 @@ if (isset($_SESSION['student'])) {
                             <td scope='row'><?php echo $name_tr; ?></td>
                             <td scope='row'><?php echo $credits; ?></td>
                             <td scope='row'><?php echo $ects; ?></td>
-                            <td scope='row'><?php echo $lecturer; ?></td>
+                            <td scope='row'><?php if (!is_null($lecturerid) and $lecturerid != 0) echo $lecturer; ?></td>
                             <td scope='row'><?php echo $grade; ?></td>
                             <td scope='row'> <a href="edit_semester.php?course=<?= $code ?>&id=<?= $studentId ?>"><i class=" fa-solid fa-pen-to-square"></i></a></td>
 

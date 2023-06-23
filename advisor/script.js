@@ -36,4 +36,37 @@
       }
     });
   });
+
+  fetch("faculty-department.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const facultySelect = document.getElementById("facultySelect");
+      const departmentSelect = document.getElementById("departmentSelect");
+      const faculties = Object.keys(data);
+
+      // Populate faculties in select options
+      faculties.forEach((faculty) => {
+        const option = document.createElement("option");
+        option.value = faculty;
+        option.text = faculty;
+        facultySelect.appendChild(option);
+      });
+
+      // Update department options when faculty selection changes
+      facultySelect.addEventListener("change", () => {
+        // Clear existing options
+        departmentSelect.innerHTML = "";
+
+        const selectedFaculty = facultySelect.value;
+        const selectedDepartments = data[selectedFaculty];
+
+        // Populate departments in select options
+        selectedDepartments.forEach((department) => {
+          const option = document.createElement("option");
+          option.value = department;
+          option.text = department;
+          departmentSelect.appendChild(option);
+        });
+      });
+    });
 })(jQuery);

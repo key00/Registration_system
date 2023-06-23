@@ -1,6 +1,15 @@
 <?php
 require("../lecturer/includes/header.php");
-require("../lecturer/includes/db.php"); ?>
+require("../lecturer/includes/db.php");
+
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
+$get_lect_id = "select * from academic where firstName='$fname' and lastName='$lname'";
+$run_query = mysqli_query($con, $get_lect_id);
+$row = mysqli_fetch_array($run_query);
+$lect_id = $row['id'];
+
+?>
 
 
 <div class="search-box m-3">
@@ -22,7 +31,7 @@ require("../lecturer/includes/db.php"); ?>
 
                 <?php
                 global $con;
-                $get_courses = "select * from semesters where year='2022-2023' and period='Spring' and lecturer='' group by course_code";
+                $get_courses = "select * from semesters where year='2022-2023' and period='Spring' and lecturer='$lect_id' group by course_code";
                 $run_query = mysqli_query($con, $get_courses);
                 if (mysqli_num_rows($run_query) > 0) {
 
@@ -48,8 +57,8 @@ require("../lecturer/includes/db.php"); ?>
 
 
                 <?php  } else echo "
-                No Courses this semester
-                "; ?>
+                No Courses this semester 
+                " ?>
             </ul>
         </div>
     </div>

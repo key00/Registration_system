@@ -74,15 +74,14 @@ if (isset($_GET['id'])) {
                 <div class='card-body p-4'>
                     <div class="row">
                         <div class="col-md-5">
-                            <p><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</p>
+                            <label class="form-label"><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</label>
+                            <select class="form-select" name="faculty" id="facultySelect">
+                                <option value="" disabled selected>--Select--</option>
+                            </select>
                             <label class="form-label"><i class='fa-solid fa-building pe-3'></i>Department: </label>
-                            <select class="form-select" name="department">
+                            <select class="form-select" name="department" id="departmentSelect">
                                 <option value="<?= $dep_name ?>" selected><?= $dep_name ?></option>
-                                <option value="1">Computer Engineering</option>
-                                <option value="2">Civil Engineering</option>
-                                <option value="5">Electrical and Electronics Engineering</option>
-                                <option value="6">Software Engineering</option>
-                                <option value="7">Mechanical Engineering</option>
+
 
                             </select>
                             <input class="form-control" type="hidden" name="studentId" id="" value="<?= $student_Id ?>">
@@ -100,8 +99,7 @@ if (isset($_GET['id'])) {
                                 <option value="75">75%</option>
                                 <option value="100">100%</option>
                             </select>
-                            <label class="form-label" class='full_name'><i class='fa-solid fa-user-group pe-3'> </i>Advisor: </label>
-                            <input class="form-control" type="text" name="advisor" id="" value="<?= $advisor ?>">
+
                         </div>
                     </div>
                 </div>
@@ -128,9 +126,14 @@ if (isset($_POST['update_info'])) {
     $department = $_POST['department'];
     $status = $_POST['status'];
     $scholarship = $_POST['scholarship'];
-    $advisor = $_POST['advisor'];
 
-    $update = "UPDATE students SET firstName='$first_name', lastName='$last_name' ,gender='$gender', date_birth='$dob', stdEmail='$std_email',scholarship='$scholarship', advisor='$advisor',country='$country',passportNum='$passport',mother='$mother',father='$father', phone='$phone',status='$status' where studentId=$studentId";
+
+    $get_dep_id = "select * from departments where departmentName='$department'";
+    $run_dep_id = mysqli_query($con, $get_dep_id);
+    $row_dep_id = mysqli_fetch_array($run_dep_id);
+    $dep_id = $row_dep_id['dId'];
+
+    $update = "UPDATE students SET firstName='$first_name', lastName='$last_name' ,gender='$gender', date_birth='$dob', stdEmail='$std_email',scholarship='$scholarship', country='$country',passportNum='$passport',mother='$mother',father='$father', phone='$phone',status='$status', dId='$dep_id' where studentId=$studentId";
     $run_update = mysqli_query($con, $update);
     if ($run_update) {
         echo "<script>alert('Infos Updated')</script>";

@@ -9,7 +9,12 @@ $row_name = mysqli_fetch_array($run_name);
 $name_en = $row_name['courseName_en'];
 $name_tr = $row_name['courseName_tr'];
 
-
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
+$get_lect_id = "select * from academic where firstName='$fname' and lastName='$lname'";
+$run_query = mysqli_query($con, $get_lect_id);
+$row = mysqli_fetch_array($run_query);
+$lect_id = $row['id'];
 ?>
 <div class="container">
     <div class="card mt-3">
@@ -41,7 +46,7 @@ $name_tr = $row_name['courseName_tr'];
         <tbody>
             <?php
 
-            $get_student = "select * from semesters where lecturer='' and course_code='$course_code' and year='2022-2023' and period='Spring'";
+            $get_student = "select * from semesters where lecturer='$lect_id' and course_code='$course_code' and year='2022-2023' and period='Spring'";
             $run_student = mysqli_query($con, $get_student);
             if (mysqli_num_rows($run_student) > 0) {
                 while ($row_student = mysqli_fetch_array($run_student)) {
@@ -58,13 +63,13 @@ $name_tr = $row_name['courseName_tr'];
 
                     <tr>
                         <td><?= $student ?></td>
-                        <td><?= $fname . "" . $lname ?></td>
+                        <td><?= $fname . " " . $lname ?></td>
                         <td><?= $grade ?></td>
                         <td scope='row'> <a href="add_grade.php?course=<?= $course_code ?>&id=<?= $student ?>"><i class=" fa-solid fa-pen-to-square"></i></a></td>
                     </tr>
         </tbody>
 <?php }
-            } else echo "NO Students in this course "; ?>
+            } else echo "<tr colspan='3' class='text-center'><td>NO Students in this course</td></tr>  "; ?>
     </table>
 </div>
 <?php

@@ -64,13 +64,13 @@ if (isset($_POST['proceed'])) {
         session_start();
         $_SESSION['advisor_id'] = $username;
         echo $_SESSION['advisor_id'];
-        echo "<script>alert('Login successful')</script>";
+        // echo "<script>alert('Login successful')</script>";
         echo "<script>window.open('advisor/index.php','_self')</script>";
     } elseif ($role == 'lecturer') {
         session_start();
         $_SESSION['lecturer_id'] = $username;
         echo $_SESSION['lecturer_id'];
-        echo "<script>alert('Login successful')</script>";
+        // echo "<script>alert('Login successful')</script>";
         echo "<script>window.open('lecturer/index.php','_self')</script>";
     }
 }

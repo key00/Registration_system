@@ -20,17 +20,28 @@ if (isset($_GET['id'])) {
         $country = $student_info['country'];
         $pass_num = $student_info['passportNum'];
         $scholarship = $student_info['scholarship'];
-        $advisor = $student_info['advisor'];
+        $advisorid = $student_info['advisor'];
+        $faculty = $student_info['faculty'];
         $department = $student_info['dId'];
         $phone = $student_info['phone'];
         $mother = $student_info['mother'];
         $father = $student_info['father'];
         $status = $student_info['status'];
 
+        $get_advisor = "select * from academic where id='$advisorid' and isadvisor=1";
+        $run_advisor = mysqli_query($con, $get_advisor);
+        $row_advisor = mysqli_fetch_array($run_advisor);
+        $advisor = $row_advisor['firstName'] . " " . $row_advisor['lastName'];
+
         $get_dep = "select * from departments where dId=$department";
         $run_dep = mysqli_query($con, $get_dep);
         $row_dep = mysqli_fetch_array($run_dep);
         $dep_name = $row_dep['departmentName'];
+
+        $get_faculty = "select * from faculties where id=$faculty";
+        $run_faculty = mysqli_query($con, $get_faculty);
+        $row_faculty = mysqli_fetch_array($run_faculty);
+        $faculty_name = $row_faculty['faculty_name'];
     }
 
 ?>
@@ -76,26 +87,28 @@ if (isset($_GET['id'])) {
                     <h3 class="text-center card-title pb-4 mb-3">ACADEMIC INFORMATIONS</h3>
                     <div class="row">
                         <div class="col-md-5">
-                            <p><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</p>
+                            <label class="form-label"><i class='fa-solid fa-building-columns pe-3'></i>Faculty: </label>
+                            <select class="form-select" name="department" disabled>
+                                <option value="<?= $faculty_name ?>" selected><?= $faculty_name ?></option>
+
+
+                            </select>
+
                             <label class="form-label"><i class='fa-solid fa-building pe-3'></i>Department: </label>
-                            <select class="form-select" name="department">
+                            <select class="form-select" name="department" disabled>
                                 <option value="<?= $dep_name ?>" selected><?= $dep_name ?></option>
-                                <option value="1">Computer Engineering</option>
-                                <option value="2">Civil Engineering</option>
-                                <option value="5">Electrical and Electronics Engineering</option>
-                                <option value="6">Software Engineering</option>
-                                <option value="7">Mechanical Engineering</option>
+
 
                             </select>
                             <input class="form-control" type="hidden" name="studentId" id="" value="<?= $student_Id ?>">
                             <label class="form-label"><i class='fa-solid fa-inbox pe-3'></i>Status:</label>
-                            <select class="form-select" name="status">
+                            <select class="form-select" name="status" disabled>
                                 <option value="<?= $status ?>" selected><?= $status ?></option>
                                 <option value="Active">Active</option>
                                 <option value="Not Active">Not active</option>
                             </select>
                             <label class="form-label"><i class='fa-solid fa-graduation-cap pe-3'></i>Scholarship: </label>
-                            <select class="form-select" name="scholarship">
+                            <select class="form-select" name="scholarship" disabled>
                                 <option value="<?= $scholarship . "%" ?>" selected><?= $scholarship . "%" ?></option>
                                 <option value="0">0%</option>
                                 <option value="50">50%</option>
@@ -103,7 +116,9 @@ if (isset($_GET['id'])) {
                                 <option value="100">100%</option>
                             </select>
                             <label class="form-label" class='full_name'><i class='fa-solid fa-user-group pe-3'> </i>Advisor: </label>
-                            <input class="form-control" type="text" name="advisor" id="" value="<?= $advisor ?>">
+                            <select class="form-select" name="advisor" id="advisorSelect">
+                                <option value=""><?= $advisor ?></option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -132,7 +147,7 @@ if (isset($_POST['update_info'])) {
     $scholarship = $_POST['scholarship'];
     $advisor = $_POST['advisor'];
 
-    $update = "UPDATE students SET firstName='$first_name', lastName='$last_name' ,gender='$gender', date_birth='$dob', stdEmail='$std_email',scholarship='$scholarship', advisor='$advisor',country='$country',passportNum='$passport',mother='$mother',father='$father', phone='$phone',status='$status' where studentId=$studentId";
+    $update = "UPDATE students SET firstName='$first_name', lastName='$last_name' ,gender='$gender', date_birth='$dob', stdEmail='$std_email', advisor='$advisor',country='$country',passportNum='$passport',mother='$mother',father='$father', phone='$phone' where studentId=$studentId";
     $run_update = mysqli_query($con, $update);
     if ($run_update) {
         echo "<script>alert('Infos Updated')</script>";

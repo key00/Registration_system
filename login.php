@@ -82,13 +82,13 @@ if (isset($_POST['login'])) {
 
     session_start();
     $_SESSION['student_id'] = $username;
-    echo "<script>alert('Login successful')</script>";
+    // echo "<script>alert('Login successful')</script>";
     echo "<script>window.open('student/index.php','_self')</script>";
   } elseif (mysqli_num_rows($run_secretary) > 0) {
 
     session_start();
     $_SESSION['secretary_id'] = $username;
-    echo "<script>alert('Login successful')</script>";
+    // echo "<script>alert('Login successful')</script>";
     echo "<script>window.open('secretary/index.php','_self')</script>";
   } elseif (mysqli_num_rows($run_advisor) > 0 and mysqli_num_rows($run_lecturer) > 0) {
 
@@ -96,12 +96,12 @@ if (isset($_POST['login'])) {
   } elseif (mysqli_num_rows($run_advisor) > 0) {
     session_start();
     $_SESSION['advisor_id'] = $username;
-    echo "<script>alert('Login successful')</script>";
+    // echo "<script>alert('Login successful')</script>";
     echo "<script>window.open('advisor/index.php','_self')</script>";
   } elseif (mysqli_num_rows($run_lecturer) > 0) {
     session_start();
     $_SESSION['lecturer_id'] = $username;
-    echo "<script>alert('Login successful')</script>";
+    // echo "<script>alert('Login successful')</script>";
     echo "<script>window.open('lecturer/index.php','_self')</script>";
   } else {
     header("Location: login.php?error=Incorrect Username or Password");
