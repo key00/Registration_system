@@ -29,19 +29,20 @@ require("../sAffairs/includes/db.php"); ?>
             $studentId = $student_info['studentId'];
             $fname = $student_info['firstName'];
             $lname = $student_info['lastName'];
-        }
+
     ?>
-        <div class="card" style="width: 60%; margin: 0 auto;">
+            <div class="card" style="width: 60%; margin: 0 auto;">
 
-            <div class="card-body p-4">
+                <div class="card-body p-4">
 
 
-                <h5 class="text-center"><?= $studentId ?> | <?php echo $fname . " " . $lname ?> </h5>
+                    <h5 class="text-center"><?= $studentId ?> | <?php echo $fname . " " . $lname ?> </h5>
 
             <?php
-        } ?>
+        }
+    } ?>
+                </div>
             </div>
-        </div>
 </div>
 
 <div class="container info dashboard active my-3 pt-3">

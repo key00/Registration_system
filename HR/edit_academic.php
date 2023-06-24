@@ -75,14 +75,13 @@ if (isset($_GET['id'])) {
                     <div class="row">
                         <div class="col-md-5">
                             <p><i class='fa-solid fa-building-columns pe-3'></i>Faculty: Engineering</p>
+                            <select class="form-select" name="faculty" id="facultySelect">
+                                <option value="" disabled selected>--Select--</option>
+                            </select>
                             <label class="form-label"><i class='fa-solid fa-building pe-3'></i>Department: </label>
-                            <select class="form-select" name="department">
+                            <select class="form-select" name="department" id="departmentSelect" required>
                                 <option value="<?= $dep_name ?>" selected><?= $dep_name ?></option>
-                                <option value="1">Computer Engineering</option>
-                                <option value="2">Civil Engineering</option>
-                                <option value="5">Electrical and Electronics Engineering</option>
-                                <option value="6">Software Engineering</option>
-                                <option value="7">Mechanical Engineering</option>
+
 
                             </select>
                             <input class="form-control" type="hidden" name="studentId" id="" value="<?= $student_Id ?>">
@@ -134,7 +133,7 @@ if (isset($_POST['update_info'])) {
     $run_update = mysqli_query($con, $update);
     if ($run_update) {
         echo "<script>alert('Infos Updated')</script>";
-        echo "<script>window.open('index.php?student=$studentId','_self')</script>";
+        echo "<script>window.open('index.php?academic=$academicId','_self')</script>";
     }
 }
 ?>

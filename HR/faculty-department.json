@@ -1,0 +1,28 @@
+{
+  "Engineering": [
+    "Computer Engineering",
+    "Mechanical Engineering",
+    "Electrical and Electronics Engineering",
+    "Civil Engineering",
+    "Software Engineering"
+  ],
+  "Aeronautics and Astronautics": [
+    "Pilotage",
+    "Aeronautical Engineering",
+    "Aviation Management"
+  ],
+  "Law": "Law",
+  "Economics and Admistrative Sciences": [
+    "Finance and Banking",
+    "International Business Management",
+    "Logistics Management",
+    "International Relations"
+  ],
+  "Health Sciences": [
+    "Nursing",
+    "Nutrition and Dietetics",
+    "Physical Therapy and Rehabilitation"
+  ],
+  "Architecture": ["Architecture", "Interior Architecture"],
+  "Tourism": ["Tourism Management", "Gastronomy and Culinary Arts"]
+}

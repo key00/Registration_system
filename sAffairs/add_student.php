@@ -74,8 +74,7 @@ require("../sAffairs/includes/db.php");
                                 <option value="75">75%</option>
                                 <option value="100">100%</option>
                             </select>
-                            <!-- <label class="form-label" class='full_name'><i class='fa-solid fa-user-group pe-3'> </i>Advisor: </label>
-                        <input class="form-control" type="text" name="advisor" required> -->
+
                         </div>
                     </div>
                     <div class="buttons mt-3 pt-3">

@@ -70,13 +70,12 @@ require("../HR/includes/db.php");
 
                 <div class="sidenav">
                     <ul>
-                        <li class="students"><i class="fa-solid fa-user pe-3"></i>Students
+                        <li class="students"><i class="fa-solid fa-user pe-3"></i>Academic
                             <ul class="nav nav-pills my-4 ps-3">
 
                                 <li class="nav-item info content active"> <i class="fa-solid fa-circle-info pe-3"></i> Informations
                                 </li>
-                                <li class="nav-item info content"> <i class="fa-solid fa-credit-card pe-3"></i> Payments
-                                </li>
+
                             </ul>
                         </li>
 
