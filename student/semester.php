@@ -9,7 +9,7 @@ $run_semester = mysqli_query($db, $get_semester);
 
 if (mysqli_num_rows($run_semester) > 0) {
 
-    echo "
+  echo "
     <table class='table table-hover bg-light table-borderless mt-3'>
     <thead>
             <tr class='table-success'>
@@ -30,48 +30,54 @@ if (mysqli_num_rows($run_semester) > 0) {
             </tr>
     ";
 
-    $totalCredits = 0;
-    $totalGradePoints = 0;
+  $totalCredits = 0;
+  $totalGradePoints = 0;
 
-    while ($row_semester = mysqli_fetch_array($run_semester)) {
+  while ($row_semester = mysqli_fetch_array($run_semester)) {
 
-        $code = $row_semester['course_code'];
-        $lecturer = $row_semester['lecturer'];
-        $grade = $row_semester['grade'];
-        $get_courses = "select * from courses where course_code='$code'";
-        $run_courses = mysqli_query($db, $get_courses);
-        $row_courses = mysqli_fetch_array($run_courses);
-        $category = $row_courses['category'];
-        $name_en = $row_courses['courseName_en'];
-        $name_tr = $row_courses['courseName_tr'];
-        $credits = $row_courses['credits'];
-        $ects = $row_courses['ects'];
+    $code = $row_semester['course_code'];
+    $lecturerid = $row_semester['lecturer'];
 
-
-        echo "
-
-            <tr>
-              <td scope='row'>$category</td>
-              <td scope='row'>$code</td>
-              <td scope='row'>$name_en</td>
-              <td scope='row'>$name_tr</td>
-              <td scope='row'>$credits</td>
-              <td scope='row'>$ects</td>
-              <td scope='row'>$lecturer</td>
-              <td scope='row'>$grade</td>
-            </tr>
-            
-            
-
-        ";
-        $gradePoints = calculateGradePoints($grade, $credits);
-        $totalCredits += $credits;
-        $totalGradePoints += $gradePoints;
-
-        $semesterGPA = $totalGradePoints / $totalCredits;
-        $formattedGPA = number_format($semesterGPA, 2);
+    if (!is_null($lecturerid) and $lecturerid != 0) {
+      $get_lecturer = "select * from academic where id='$lecturerid' and islecturer=1";
+      $run_lecturer = mysqli_query($con, $get_lecturer);
+      $row_lecturer = mysqli_fetch_array($run_lecturer);
+      $lecturer = $row_lecturer['firstName'] . " " . $row_lecturer['lastName'];
     }
-    echo "
+
+    $grade = $row_semester['grade'];
+    $get_courses = "select * from courses where course_code='$code'";
+    $run_courses = mysqli_query($db, $get_courses);
+    $row_courses = mysqli_fetch_array($run_courses);
+    $category = $row_courses['category'];
+    $name_en = $row_courses['courseName_en'];
+    $name_tr = $row_courses['courseName_tr'];
+    $credits = $row_courses['credits'];
+    $ects = $row_courses['ects'];
+
+?>
+
+    <tr>
+      <td scope='row'><?= $category ?> </td>
+      <td scope='row'><?= $code ?> </td>
+      <td scope='row'><?= $name_en ?> </td>
+      <td scope='row'><?= $name_tr ?> </td>
+      <td scope='row'><?= $credits ?> </td>
+      <td scope='row'><?= $ects ?> </td>
+      <td scope='row'><?php if (!is_null($lecturerid) and $lecturerid != 0) echo $lecturer ?> </td>
+      <td scope='row'><?= $grade ?> </td>
+    </tr>
+
+
+<?php
+    $gradePoints = calculateGradePoints($grade, $credits);
+    $totalCredits += $credits;
+    $totalGradePoints += $gradePoints;
+
+    $semesterGPA = $totalGradePoints / $totalCredits;
+    $formattedGPA = number_format($semesterGPA, 2);
+  }
+  echo "
       <tfoot>
       <tr>
         <th class='text-end' colspan='7'> GPA: </th>
@@ -84,7 +90,7 @@ if (mysqli_num_rows($run_semester) > 0) {
       </table>
       ";
 } else {
-    echo "<div class='card mt-4'>
+  echo "<div class='card mt-4'>
     <div class='card-body p-4'>
       <h5 class='text-center'> Not available </h5>
     </div>
