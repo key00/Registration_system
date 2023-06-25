@@ -21,7 +21,13 @@ if (isset($_GET['id']) and isset($_GET['course'])) {
         $run_query = mysqli_query($con, $query);
         if (mysqli_num_rows($run_query) > 0) {
                 $row = mysqli_fetch_array($run_query);
-                $lecturer = $row['lecturer'];
+                $lecturerid = $row['lecturer'];
+                if (!is_null($lecturerid) and $lecturerid != 0) {
+                        $get_lecturer = "select * from academic where id='$lecturerid' and islecturer=1";
+                        $run_lecturer = mysqli_query($con, $get_lecturer);
+                        $row_lecturer = mysqli_fetch_array($run_lecturer);
+                        $lecturer = $row_lecturer['firstName'] . " " . $row_lecturer['lastName'];
+                }
                 $grade = $row['grade'];
         }
 }
@@ -50,7 +56,9 @@ if (isset($_GET['id']) and isset($_GET['course'])) {
                                         <label class="form-label">ECTS</label>
                                         <input class="form-control" value="<?= $ects ?>" disabled>
                                         <label class="form-label">Lecturer</label>
-                                        <input class="form-control" name="lecturer" value="<?= $lecturer ?>">
+                                        <select class="form-select" name="lecturer" id="lecturerSelect">
+                                                <option value="<?php if (!is_null($lecturerid) and $lecturerid != 0) echo $lecturerid ?>"><?php if (!is_null($lecturerid) and $lecturerid != 0) echo $lecturer ?></option>
+                                        </select>
                                         <label class="form-label">Grade</label>
                                         <input class="form-control" name="grade" value="<?= $grade ?>">
                                 </div>

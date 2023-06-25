@@ -69,4 +69,21 @@
         });
       });
     });
+
+  fetch("get_lecturer.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const lecturerSelect = document.getElementById("lecturerSelect");
+
+      // Populate the <select> options
+      data.forEach((lecturer) => {
+        const option = document.createElement("option");
+        option.value = lecturer.id;
+        option.text = lecturer.firstName + " " + lecturer.lastName;
+        lecturerSelect.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 })(jQuery);

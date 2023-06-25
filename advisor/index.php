@@ -102,34 +102,7 @@ if (isset($_SESSION['advisor_id'])) {
                     </form>
 
                 </div>
-                <div class="container my-3 pt-3">
-                    <?php if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
 
-
-                        $student = $_SESSION['student'];
-
-                        $get_info = "select * from students where studentId=$student";
-                        $run_info = mysqli_query($con, $get_info);
-
-                        if (mysqli_num_rows($run_info) > 0) {
-                            $student_info = mysqli_fetch_array($run_info);
-                            $studentId = $student_info['studentId'];
-                            $firstname = $student_info['firstName'];
-                            $lastname = $student_info['lastName'];
-                        }
-                    ?>
-                        <div class="card" style="width: 60%; margin: 0 auto;">
-
-                            <div class="card-body p-4">
-
-
-                                <h5 class="text-center"><?= $studentId ?> | <?php echo $firstname . " " . $lastname ?> </h5>
-
-                            <?php
-                        } ?>
-                            </div>
-                        </div>
-                </div>
                 <div class="info active dashboard">
                     <?php
                     if (isset($_POST['search_student']) or isset($_SESSION['student'])) {
