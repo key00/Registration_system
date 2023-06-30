@@ -54,9 +54,9 @@ require("../sAffairs/includes/db.php"); ?>
 <div class="container payment dashboard my-3 pt-3">
     <!-- for payments -->
     <?php
-    //if (isset($_GET['search_student'])) {
-    //  include("student_info.php");
-    // }
+    if (isset($_GET['student'])) {
+        include("payment.php");
+    }
     ?>
 </div>
 <?php

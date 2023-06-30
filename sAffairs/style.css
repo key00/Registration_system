@@ -205,3 +205,21 @@ button.form-button {
   padding: 5px !important;
   border-radius: 8px !important;
 }
+
+table > tbody > tr > td.amount {
+  font-weight: 800 !important;
+}
+
+table > tbody > tr > td.paid span {
+  border-radius: 8px;
+  background-color: #168629;
+  color: #fff;
+  padding: 8px;
+}
+
+table > tbody > tr > td.not-paid span {
+  border-radius: 8px;
+  background-color: #ca1e1e;
+  color: #fff;
+  padding: 8px;
+}
