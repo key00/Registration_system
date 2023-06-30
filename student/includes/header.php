@@ -18,7 +18,14 @@ if (isset($_SESSION['student_id'])) {
     $country = $row_student['country'];
     $pass_num = $row_student['passportNum'];
     $scholarship = $row_student['scholarship'];
-    $advisor = $row_student['advisor'];
+    $advisorid = $row_student['advisor'];
+
+    $get_advisor = "select * from academic where id='$advisorid' and isadvisor=1";
+    $run_advisor = mysqli_query($con, $get_advisor);
+    $row_advisor = mysqli_fetch_array($run_advisor);
+    $advisor = $row_advisor['firstName'] . " " . $row_advisor['lastName'];
+
+
     $department = $row_student['dId'];
 
     $get_dep = "select * from departments where dId=$department";
