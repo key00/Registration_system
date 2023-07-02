@@ -88,7 +88,7 @@ if (isset($_GET['id'])) {
                             </select>
                             <input class="form-control" type="hidden" name="studentId" id="" value="<?= $student_Id ?>">
                             <label class="form-label"><i class='fa-solid fa-inbox pe-3'></i>Status:</label>
-                            <select class="form-select" name="status">
+                            <select class="form-select" name="status" disabled>
                                 <option value="<?= $status ?>" selected><?= $status ?></option>
                                 <option value="Active">Active</option>
                                 <option value="Not Active">Not active</option>

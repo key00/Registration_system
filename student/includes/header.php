@@ -25,6 +25,15 @@ if (isset($_SESSION['student_id'])) {
     $row_advisor = mysqli_fetch_array($run_advisor);
     $advisor = $row_advisor['firstName'] . " " . $row_advisor['lastName'];
 
+    $get_status = "select sum(amount) as sum from payments where studentId=$std_num and type='Tuition fees'";
+    $run_status = mysqli_query($con, $get_status);
+    $row_status = mysqli_fetch_array($run_status);
+    $sum = $row_status['sum'];
+    $min_tuition = (5600 * (1 - ($scholarship / 100))) / 2;
+    if ($sum >= $min_tuition) {
+        $status = 'Active';
+    } else $status = 'Not Active';
+
 
     $department = $row_student['dId'];
 

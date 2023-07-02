@@ -62,10 +62,3 @@ require("../sAffairs/includes/db.php"); ?>
 <?php
 require('../sAffairs/includes/footer.php');
 ?>
-
-<?php
-// if (isset($_POST['refresh'])) {
-// unset($_SESSION['student']);
-// unset($_GET['student']);
-// }
-?>

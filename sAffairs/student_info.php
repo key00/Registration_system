@@ -28,7 +28,6 @@ if (mysqli_num_rows($run_info) > 0) {
     $phone = $student_info['phone'];
     $mother = $student_info['mother'];
     $father = $student_info['father'];
-    $status = $student_info['status'];
 
     $get_advisor = "select * from academic where id='$advisorid' and isadvisor=1";
     $run_advisor = mysqli_query($con, $get_advisor);
@@ -40,10 +39,23 @@ if (mysqli_num_rows($run_info) > 0) {
     $row_dep = mysqli_fetch_array($run_dep);
     $dep_name = $row_dep['departmentName'];
 
+    $get_status = "select sum(amount) as paid_tuition from payments where studentId=$studentId and type='Tuition fees'";
+    $run_status = mysqli_query($con, $get_status);
+    $row_status = mysqli_fetch_array($run_status);
+    $paid_tuition = $row_status['paid_tuition'];
+
+
+    $min_tuition = (5600 * (1 - ($scholarship / 100))) / 2;
+    if ($paid_tuition >= $min_tuition) {
+        $status = 'Active';
+    } else $status = 'Not Active';
+
+
 
 ?>
 
     <a href="edit_student.php?id=<?= $studentId ?>" class="btn btn-success mb-3">EDIT</a>
+
     <div class='card'>
         <div class='card-body p-4'>
             <h3 class="text-center card-title pb-4 mb-3">PERSONAL INFORMATIONS</h3>
@@ -55,6 +67,7 @@ if (mysqli_num_rows($run_info) > 0) {
                     <p>Gender: <?php echo $gender; ?></p>
                     <p>Email: <?php echo $stdmail; ?></p>
                 </div>
+
                 <div class='col-5 col-md-5'>
                     <p>Country of Origin: <?php echo $country; ?></p>
                     <p>Passport Number: <?php echo $pass_num; ?></p>

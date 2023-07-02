@@ -29,7 +29,7 @@
         <h3 class="text-center card-title pb-4 mb-3">ACADEMIC INFORMATIONS</h3>
         <p><i class="fa-solid fa-building-columns pe-3"></i>Faculty: Engineering</p>
         <p><i class="fa-solid fa-building pe-3"></i>Department: <?php echo $dep_name ?></p>
-        <p><i class="fa-solid fa-inbox pe-3"></i>Status: Active Student</p>
+        <p><i class="fa-solid fa-inbox pe-3"></i>Status: <?php echo $status ?></p>
         <p><i class="fa-solid fa-graduation-cap pe-3"></i>Scholarship: <?php echo $scholarship ?>%</p>
         <p class="full_name"><i class="fa-solid fa-user-group pe-3"> </i>Advisor: <?php echo $advisor ?></p>
     </div>

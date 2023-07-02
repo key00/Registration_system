@@ -28,7 +28,7 @@ if (mysqli_num_rows($run_info) > 0) {
     $phone = $student_info['phone'];
     $mother = $student_info['mother'];
     $father = $student_info['father'];
-    $status = $student_info['status'];
+    // $status = $student_info['status'];
 
     $get_advisor = "select * from academic where id='$advisorid' and isadvisor=1";
     $run_advisor = mysqli_query($con, $get_advisor);
@@ -39,6 +39,16 @@ if (mysqli_num_rows($run_info) > 0) {
     $run_dep = mysqli_query($con, $get_dep);
     $row_dep = mysqli_fetch_array($run_dep);
     $dep_name = $row_dep['departmentName'];
+
+    $get_status = "select sum(amount) as sum from payments where studentId=$studentId and type='Tuition fees'";
+    $run_status = mysqli_query($con, $get_status);
+    $row_status = mysqli_fetch_array($run_status);
+    $sum = $row_status['sum'];
+    $min_tuition = (5600 * (1 - ($scholarship / 100))) / 2;
+    if ($sum >= $min_tuition) {
+        $status = 'Active';
+    } else $status = 'Not Active';
+
 
 
 ?>
